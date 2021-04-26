@@ -39,63 +39,6 @@ ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 publishMavenStyle := true
 
-//Test / publishArtifact := false
-
 pomIncludeRepository := { _ =>
   false
 }
-
-// Release settings
-//releaseTagName := s"${if (releaseUseGlobalVersion.value) (ThisBuild / version).value else version.value}" // Remove v prefix
-//releaseTagComment := s"Releasing ${(ThisBuild / version).value}\n\n[skip ci]"
-//releaseCommitMessage := s"Setting version to ${(ThisBuild / version).value}\n\n[skip ci]"
-
-//releaseProcess := Seq[ReleaseStep](
-//  checkSnapshotDependencies,
-//  inquireVersions,
-//  runClean,
-//  setReleaseVersion,
-//  updateLines,
-//  commitReleaseVersion,
-//  tagRelease,
-//  publishArtifacts,
-//  setNextVersion,
-//  commitNextVersion,
-//  releaseStepCommand("sonatypeReleaseAll"),
-//  pushChanges
-//)
-
-// Test settings
-Test / testOptions ++= Seq(
-  Tests.Argument("junitxml")
-)
-
-//val unreleasedCompare = """^\[Unreleased\]: https://github\.com/(.*)/compare/(.*)\.\.\.HEAD$""".r
-//updateLinesSchema := Seq(
-//  UpdateLine(
-//    file("README.md"),
-//    _.contains("""libraryDependencies += "com.github.mdcollab" %% "scala-redox" % """),
-//    (v, _) => s"""libraryDependencies += "com.github.mdcollab" %% "scala-redox" % "$v""""
-//  ),
-//  UpdateLine(
-//    file("CHANGELOG.md"),
-//    _.contains("## [Unreleased]"),
-//    (v, _) => s"## [Unreleased]\n\n## [$v] - ${java.time.LocalDate.now}"
-//  ),
-//  UpdateLine(
-//    file("CHANGELOG.md"),
-//    unreleasedCompare.unapplySeq(_).isDefined,
-//    (v, compareLine) =>
-//      compareLine match {
-//        case unreleasedCompare(project, previous) =>
-//          s"[Unreleased]: https://github.com/$project/compare/$v...HEAD\n[$v]: https://github.com/$project/compare/$previous...$v"
-//      }
-//  ),
-//)
-
-
-//mimaPreviousArtifacts := Set(organization.value %% name.value % "8.0.1")
-
-//mimaBinaryIssueFilters ++= Seq(
-//  // e.g. ProblemFilters.exclude[MissingClassProblem]("co.vitaler.events.*"),
-//)
