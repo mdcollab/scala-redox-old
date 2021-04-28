@@ -2,6 +2,8 @@ name: test
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REDOX_API_KEY: ${{ secrets.REDOX_API_KEY }}
+  REDOX_API_SECRET: ${{ secrets.REDOX_API_SECRET }}
 
 on:
   push:
