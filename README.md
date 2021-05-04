@@ -103,6 +103,10 @@ in one model but not another. For example in models.Observation which is used by
 
 A different approach was taken by the PHP redox client listed below.
 
+## Testing
+
+To run tests via `sbt tests`, a Redox integration will be needed. To run locally, you'll need to set `REDOX_API_KEY` and `REDOX_API_SECRET` environment variables to a corresponding (dev) instance.
+
 ## Links
 
 - [Redox PHP client from RoundingWell](https://github.com/RoundingWellOS/redox-php)
