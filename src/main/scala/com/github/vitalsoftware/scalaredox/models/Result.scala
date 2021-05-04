@@ -74,12 +74,13 @@ object ResultPerformer extends RobustPrimitives
   FileType: Option[String] = None,
   Units: Option[String] = None,
   Notes: Seq[String] = Seq.empty,
-  AbnormalFlag: Option[String] = None,
+  AbnormalFlag: Option[AbnormalFlagTypes.Value] = None,
   Status: Option[String] = None,
   Producer: Option[OrderProducer] = None,
   Performer: Option[ResultPerformer] = None,
   ReferenceRange: Option[ReferenceRange] = None,
-  ObservationMethod: Option[BasicCodeset] = None
+  ObservationMethod: Option[BasicCodeset] = None,
+  Extensions: Option[Extension] = None,
 )
 
 object Result extends RobustPrimitives
@@ -92,6 +93,38 @@ object ResultsStatusTypes extends Enumeration {
   def defaultValue = Other
   @transient implicit lazy val jsonFormat: Format[ResultsStatusTypes.Value] =
     Format(Reads.enumNameReads(ResultsStatusTypes), Writes.enumNameWrites)
+}
+
+object OrderResultsStatusTypes extends Enumeration {
+  val Resulted, New, Cancel, Update = Value
+
+  @transient implicit lazy val jsonFormat: Format[OrderResultsStatusTypes.Value] =
+    Format(Reads.enumNameReads(OrderResultsStatusTypes), Writes.enumNameWrites)
+}
+
+object ResultStatusTypes extends Enumeration {
+  val Preliminary, Incomplete, Corrected, Final, Unavailable, Canceled, Deleted = Value
+  val NoneSpecified = Value("None Specified")
+
+  @transient implicit lazy val jsonFormat: Format[ResultStatusTypes.Value] =
+    Format(Reads.enumNameReads(ResultStatusTypes), Writes.enumNameWrites)
+}
+
+object AbnormalFlagTypes extends Enumeration {
+  val Normal, Low, High, Abnormal, Susceptible, Resistant, Intermediate = Value
+  val VeryLow = Value("Very Low")
+  val VeryHigh = Value("Very High")
+  val ModeratelySusceptible = Value("Moderately Susceptible")
+  val VerySusceptible = Value("Very Susceptible")
+  val CriticallyAbnormal = Value("Critically Abnormal")
+  val CriticallyLow = Value("Critically Low")
+  val CriticallyHigh = Value("Critically High")
+  val NotSusceptible = Value("Not Susceptible")
+  val InconclusiveInconclusive = Value("Inconclusive Inconclusive")
+  val VeryAbnormal = Value("Very Abnormal")
+
+  @transient implicit lazy val jsonFormat: Format[AbnormalFlagTypes.Value] =
+    Format(Reads.enumNameReads(AbnormalFlagTypes), Writes.enumNameWrites)
 }
 
 /**
@@ -121,10 +154,11 @@ object ResultsStatusTypes extends Enumeration {
   ResultsStatus: Option[ResultsStatusTypes.Value] = None,
   Procedure: Option[BasicCodeset] = None,
   Provider: Option[Provider] = None,
-  Status: String,
+  Status: OrderResultsStatusTypes.Value,
   ResponseFlag: Option[String] = None,
   Priority: Option[OrderPriorityTypes.Value] = None,
-  Results: Seq[Result] = Seq.empty
+  Results: Seq[Result] = Seq.empty,
+  Extensions: Option[Extension] = None,
 )
 
 object OrderResult extends RobustPrimitives

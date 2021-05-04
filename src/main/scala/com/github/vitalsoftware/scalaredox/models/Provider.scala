@@ -8,6 +8,7 @@ import com.github.vitalsoftware.util.RobustPrimitives
  *
  * @param ID ID of the Provider responsible for the document. This ID is required for Inpatient Visits
  * @param IDType ID type of the ID for the Provider responsible for the document
+ * @param NPI: NPI of the Provider responsible for the document
  * @param FirstName First name of the Provider responsible for the document
  * @param LastName Last name of the Provider responsible for the document
  * @param Type The type of provider for this referral. One of the following: "Referring Provider", "Referred To Provider", "Other", "Patient PCP"
@@ -17,6 +18,7 @@ import com.github.vitalsoftware.util.RobustPrimitives
 @jsonDefaults case class Provider(
   ID: Option[String] = None,
   IDType: Option[String] = None,
+  NPI: Option[String] = None,
   FirstName: Option[String] = None,
   LastName: Option[String] = None,
   Type: Option[String] = None,
