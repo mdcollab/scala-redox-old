@@ -107,6 +107,11 @@ A different approach was taken by the PHP redox client listed below.
 
 To run tests via `sbt tests`, a Redox integration will be needed. To run locally, you'll need to set `REDOX_API_KEY` and `REDOX_API_SECRET` environment variables to a corresponding (dev) instance.
 
+## Publishing
+Publishing is currently done via GitHub packages, via the [SBT Github Packages Plugin](https://github.com/djspiewak/sbt-github-packages). Currently a build can be manually created through the GitHub Action `release`. 
+
+You will need to increment the version appropriately in `version.sbt`, as duplicate versions are not allowed.
+
 ## Links
 
 - [Redox PHP client from RoundingWell](https://github.com/RoundingWellOS/redox-php)
