@@ -32,6 +32,7 @@ object ChartResult extends RobustPrimitives
 @jsonDefaults case class ResultPerformer(
   ID: Option[String],
   IDType: Option[String],
+  NPI: Option[String] = None,
   FirstName: Option[String],
   LastName: Option[String],
   Type: Option[String],
