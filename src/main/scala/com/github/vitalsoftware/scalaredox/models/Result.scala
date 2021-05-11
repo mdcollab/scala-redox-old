@@ -44,6 +44,22 @@ object ChartResult extends RobustPrimitives
 
 object ResultPerformer extends RobustPrimitives
 
+@jsonDefaults case class OrderResultProvider (
+  ID: Option[String],
+  IDType: Option[String],
+  NPI: Option[String] = None,
+  FirstName: Option[String],
+  LastName: Option[String],
+  Type: Option[String],
+  Credentials: Seq[String] = Seq.empty,
+  Address: Option[Address] = None,
+  EmailAddresses: Seq[String] = Seq.empty,
+  Location: Option[CareLocation] = None,
+  PhoneNumber: Option[PhoneNumber] = None
+) extends ProviderLike
+
+object OrderResultProvider extends RobustPrimitives
+
 /**
  * Results messages communicate results of diagnostic tests such as labs, radiology imaging, etc.
  *
@@ -154,7 +170,7 @@ object AbnormalFlagTypes extends Enumeration {
   Notes: Seq[String] = Seq.empty,
   ResultsStatus: Option[ResultsStatusTypes.Value] = None,
   Procedure: Option[BasicCodeset] = None,
-  Provider: Option[Provider] = None,
+  Provider: Option[OrderResultProvider] = None,
   Status: OrderResultsStatusTypes.Value,
   ResponseFlag: Option[String] = None,
   Priority: Option[OrderPriorityTypes.Value] = None,

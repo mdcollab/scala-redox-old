@@ -20,8 +20,6 @@ trait RedoxTest {
   val conf = ClientConfig(ConfigFactory.load("resources/reference.conf"))
   val httpClient = StandaloneAhcWSClient()
 
-  val conf = ClientConfig(ConfigFactory.load("resources/reference.conf"))
-  val httpClient = StandaloneAhcWSClient()
   val tokenManager = new RedoxTokenManager(httpClient, conf.baseRestUri)
   val client = new RedoxClient(conf, httpClient, tokenManager)
   val timeout: FiniteDuration = 20.seconds
