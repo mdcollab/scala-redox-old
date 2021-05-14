@@ -107,10 +107,8 @@ A different approach was taken by the PHP redox client listed below.
 
 To run tests via `sbt tests`, a Redox integration will be needed. To run locally, you'll need to set `REDOX_API_KEY` and `REDOX_API_SECRET` environment variables to a corresponding (dev) instance.
 
-You may see an error about `GITHUB_TOKEN` not being set. An unfortunate side effect of our publishing plugin (see below), requires this env variable to be set. You can either create your own personal access token, or locally disable the `sbt-github-packages` plugin by commenting out lines in `plugins.sbt:5` and `build.sbt:9-11`.
-
 ## Publishing
-Publishing is currently done via GitHub packages, via the [SBT Github Packages Plugin](https://github.com/djspiewak/sbt-github-packages). Currently a build can be manually created through the GitHub Action `release`. 
+Publishing is currently done via GitHub packages, via the [SBT Github Packages Plugin](https://github.com/djspiewak/sbt-github-packages). Currently a build can be manually created through the GitHub Action `release`.
 
 You will need to increment the version appropriately in `version.sbt`, as duplicate versions are not allowed.
 
