@@ -35,15 +35,15 @@ object RaceType extends Enumeration {
     Format(Reads.enumNameReads(RaceType), Writes.enumNameWrites)
 }
 
-object EthnicityType extends Enumeration {
+object IsHispanicType extends Enumeration {
   val IsHispanic = Value("true")
   val IsNotHispanic = Value("false")
   val Unknown = Value("null")
 
   def defaultValue = Unknown
 
-  @transient implicit lazy val jsonFormat: Format[EthnicityType.Value] =
-    Format(Reads.enumNameReads(EthnicityType), Writes.enumNameWrites)
+  @transient implicit lazy val jsonFormat: Format[IsHispanicType.Value] =
+    Format(Reads.enumNameReads(IsHispanicType), Writes.enumNameWrites)
 }
 
 object SexType extends Enumeration {
@@ -93,7 +93,7 @@ object SexType extends Enumeration {
   Language: Option[Language] = None,
   Citizenship: Seq[String] = Seq.empty, // TODO ISO 3166
   Race: Option[RaceType.Value] = None,
-  Ethnicity: Option[EthnicityType.Value] = None,
+  IsHispanic: Option[Boolean] = None,
   Religion: Option[String] = None,
   MaritalStatus: Option[String] = None
 ) extends WithContactDetails

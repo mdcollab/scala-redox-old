@@ -310,7 +310,7 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
           |				},
           |				"EmailAddresses": [],
           |				"Race": "Asian",
-          |				"Ethnicity": null,
+          |				"IsHispanic": null,
           |				"Religion": null,
           |				"MaritalStatus": "Single"
           |			}
