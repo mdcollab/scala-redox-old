@@ -48,7 +48,7 @@ abstract class RedoxClientComponents(
         // Success status
         case r =>
           if (r.body.isEmpty) {
-            Right(EmptyResponse.asInstanceOf[T])
+            Left(RedoxErrorResponse.simple("JSON body is empty"))
           } else {
             val json = reducer(r.body[JsValue])
 
