@@ -45,22 +45,22 @@ abstract class RedoxClientComponents(
             case Failure(e) => Left(RedoxErrorResponse.simple(r.statusText, r.body))
           }
 
+        // Not failure status but response body is empty
+        case r if r.body.isEmpty =>
+          Left(RedoxErrorResponse.simple("Response body is empty with status code: " + r.status))
+
         // Success status
         case r =>
-          if (r.body.isEmpty) {
-            Left(RedoxErrorResponse.simple("JSON body is empty"))
-          } else {
-            val json = reducer(r.body[JsValue])
+          val json = reducer(r.body[JsValue])
 
-            Json
-              .fromJson(json)
-              .fold(
-                // Json to Scala objects failed...force into RedoxError format
-                invalid = err => Left(RedoxErrorResponse.fromJsError(JsError(err))),
-                // All good
-                valid = t => Right(t)
-              )
-          }
+          Json
+            .fromJson(json)
+            .fold(
+              // Json to Scala objects failed...force into RedoxError format
+              invalid = err => Left(RedoxErrorResponse.fromJsError(JsError(err))),
+              // All good
+              valid = t => Right(t)
+            )
       }
       .map { response =>
         RedoxResponse[T](response)
