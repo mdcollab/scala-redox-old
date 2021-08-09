@@ -47,7 +47,7 @@ abstract class RedoxClientComponents(
 
         // Not failure status but response body is empty
         case r if r.body.isEmpty =>
-          Left(RedoxErrorResponse.simple("Response body is empty with status code: " + r.status))
+          Left(RedoxErrorResponse.simple(s"Response body is empty with status code: ${r.status}"))
 
         // Success status
         case r =>
