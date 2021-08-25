@@ -431,6 +431,6 @@ class PatientAdminTest extends Specification with RedoxTest {
       val fut = client.post[PatientAdminMessage, EmptyResponse](patientAdmin)
       val maybe = handleResponse(fut)
       maybe must beSome
-    }.pendingUntilFixed
+    }
   }
 }
