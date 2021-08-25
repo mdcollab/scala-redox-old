@@ -9,8 +9,8 @@ import com.github.vitalsoftware.util.RobustPrimitives
  */
 @jsonDefaults case class PatientQuery(
   Meta: Meta,
-  Patient: Patient
-) extends HasPatient
+  Patient: ClinicalSummaryPatient
+) extends HasClinicalSummaryPatient
 
 object PatientQuery extends RobustPrimitives
 

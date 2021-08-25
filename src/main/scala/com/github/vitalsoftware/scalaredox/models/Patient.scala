@@ -70,24 +70,57 @@ object SexType extends Enumeration {
  * @param Religion List at https://www.hl7.org/fhir/v3/ReligiousAffiliation/index.html
  * @param MaritalStatus List at http://www.hl7.org/FHIR/v2/0002/index.html
  */
-@jsonDefaults case class Demographics(
+@jsonDefaults case class ClinicalSummaryDemographics(
   FirstName: String,
+  MiddleName: Option[String] = None,
   LastName: String,
-  DOB: Option[DateTime] = None,
+  DOB: DateTime,
   SSN: Option[String] = None,
   Sex: SexType.Value = SexType.Unknown,
   Address: Option[Address] = None,
   PhoneNumber: Option[PhoneNumber] = None,
+  EmailAddresses: Seq[EmailAddress] = Seq.empty,
+  Language: Option[Language] = None,
+  Race: Option[RaceType.Value] = None,
+  Ethnicity: Option[String] = None,
+  Religion: Option[String] = None,
+  MaritalStatus: Option[String] = None
+) extends DemographicsLike
+    with WithContactDetailObjects
+
+object ClinicalSummaryDemographics extends RobustPrimitives
+
+@jsonDefaults case class OtherDemographics(
+  FirstName: Option[String],
+  MiddleName: Option[String] = None,
+  LastName: Option[String],
+  DOB: Option[DateTime] = None,
+  SSN: Option[String] = None,
+  Sex: Option[SexType.Value] = None,
+  Race: Option[RaceType.Value] = None,
+  IsHispanic: Option[Boolean] = None,
+  MaritalStatus: Option[String] = None,
+  IsDeceased: Option[Boolean] = None,
+  DeathDateTime: Option[DateTime] = None,
+  PhoneNumber: Option[PhoneNumber] = None,
   EmailAddresses: Seq[String] = Seq.empty,
   Language: Option[Language] = None,
   Citizenship: Seq[String] = Seq.empty, // TODO ISO 3166
-  Race: Option[RaceType.Value] = None,
-  IsHispanic: Option[Boolean] = None,
-  Religion: Option[String] = None,
-  MaritalStatus: Option[String] = None
-) extends WithContactDetails
+  Address: Option[Address] = None,
+) extends DemographicsLike
+    with WithContactDetails
 
-object Demographics extends RobustPrimitives
+object OtherDemographics extends RobustPrimitives
+
+trait DemographicsLike {
+  def MiddleName: Option[String]
+  def SSN: Option[String]
+  def Address: Option[Address]
+  def PhoneNumber: Option[PhoneNumber]
+  def Language: Option[Language]
+  def Race: Option[RaceType.Value]
+  def MaritalStatus: Option[String]
+}
 
 /**
  * @param RelationToPatient Personal relationship to the patient. e.x. Father, Spouse
@@ -108,15 +141,27 @@ object Contact extends RobustPrimitives
 /**
  * Patient
  */
+@jsonDefaults case class ClinicalSummaryPatient(
+  Identifiers: Seq[Identifier],
+  Demographics: Option[ClinicalSummaryDemographics] = None,
+) extends PatientLike
+
+object ClinicalSummaryPatient extends RobustPrimitives
+
 @jsonDefaults case class Patient(
-  Identifiers: Seq[Identifier] = Seq.empty,
-  Demographics: Option[Demographics] = None,
+  Identifiers: Seq[Identifier],
+  Demographics: Option[OtherDemographics] = None,
   Notes: Seq[String] = Seq.empty,
   Contacts: Seq[Contact] = Seq.empty,
   Guarantor: Option[Guarantor] = None,
   Insurances: Seq[Insurance] = Seq.empty,
   Diagnoses: Seq[CodesetWithName] = Seq.empty,
+  Allergies: Seq[Allergy] = Seq.empty,
   PCP: Option[Provider] = None
-)
+) extends PatientLike
 
 object Patient extends RobustPrimitives
+
+trait PatientLike {
+  def Identifiers: Seq[Identifier]
+}

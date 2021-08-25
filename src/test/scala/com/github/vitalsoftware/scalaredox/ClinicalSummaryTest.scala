@@ -16,7 +16,11 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
     "return an error" in {
       val shouldFailQuery = PatientQuery(
         Meta(DataModel = DataModelTypes.ClinicalSummary, EventType = RedoxEventTypes.Query),
-        Patient(Demographics = Some(Demographics("John", "Doe", Some(DateTime.parse("1970-1-1")), Sex = SexType.Male)))
+        ClinicalSummaryPatient(
+          Identifiers = Seq.empty,
+          Demographics =
+            Some(ClinicalSummaryDemographics("John", None, "Doe", DateTime.parse("1970-1-1"), Sex = SexType.Male))
+        )
       )
       val fut = client.get[PatientQuery, ClinicalSummary](shouldFailQuery)
       val resp = Await.result(fut, timeout)

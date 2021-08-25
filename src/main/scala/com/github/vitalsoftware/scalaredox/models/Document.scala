@@ -35,7 +35,7 @@ object Document extends RobustPrimitives
  */
 @jsonDefaults case class Header(
   Document: Document,
-  Patient: Patient
-) extends HasPatient
+  Patient: ClinicalSummaryPatient
+) extends HasClinicalSummaryPatient
 
 object Header extends RobustPrimitives
