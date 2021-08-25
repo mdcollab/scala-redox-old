@@ -4,7 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
-import play.api.libs.json.Reads.DefaultJodaDateReads
+import org.joda.time.DateTime
 import play.api.libs.json._
 
 import scala.collection.Seq
@@ -90,7 +90,7 @@ object SexType extends Enumeration {
 
 object ClinicalSummaryDemographics extends RobustPrimitives
 
-@jsonDefaults case class OtherDemographics(
+@jsonDefaults case class Demographics(
   FirstName: Option[String],
   MiddleName: Option[String] = None,
   LastName: Option[String],
@@ -110,7 +110,7 @@ object ClinicalSummaryDemographics extends RobustPrimitives
 ) extends DemographicsLike
     with WithContactDetails
 
-object OtherDemographics extends RobustPrimitives
+object Demographics extends RobustPrimitives
 
 trait DemographicsLike {
   def MiddleName: Option[String]
@@ -150,7 +150,7 @@ object ClinicalSummaryPatient extends RobustPrimitives
 
 @jsonDefaults case class Patient(
   Identifiers: Seq[Identifier],
-  Demographics: Option[OtherDemographics] = None,
+  Demographics: Option[Demographics] = None,
   Notes: Seq[String] = Seq.empty,
   Contacts: Seq[Contact] = Seq.empty,
   Guarantor: Option[Guarantor] = None,
