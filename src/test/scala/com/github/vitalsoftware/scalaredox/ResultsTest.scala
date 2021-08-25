@@ -329,9 +329,11 @@ class ResultsTest extends Specification with RedoxTest {
 
       val provider = order.Provider.get
       provider.NPI must beSome
-      provider.EmailAddresses must not be empty
       order.Procedure must beSome
       order.Results must not be empty
+
+      val demographics = data.Patient.Demographics.get
+      demographics.EmailAddresses must not be empty
 
       val result = order.Results.head
       result.Producer must beSome
