@@ -332,8 +332,8 @@ class ResultsTest extends Specification with RedoxTest {
       order.Procedure must beSome
       order.Results must not be empty
 
-      val demographics = data.Patient.Demographics.get
-      demographics.EmailAddresses must not be empty
+      val contacts = data.Patient.Contacts.head
+      contacts.EmailAddresses must not be empty
 
       val result = order.Results.head
       result.Producer must beSome
