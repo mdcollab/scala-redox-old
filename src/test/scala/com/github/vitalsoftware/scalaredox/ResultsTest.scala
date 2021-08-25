@@ -108,7 +108,7 @@ class ResultsTest extends Specification with RedoxTest {
           |            },
           |            "RelationToPatient": "Mother",
           |            "EmailAddresses": [
-          |               "Address": "barb.bixby@test.net"
+          |               "barb.bixby@test.net"
           |            ],
           |            "Roles": [
           |               "Emergency Contact"
