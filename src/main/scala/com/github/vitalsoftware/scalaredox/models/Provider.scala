@@ -3,29 +3,33 @@ package com.github.vitalsoftware.scalaredox.models
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
 
+import scala.collection.Seq
+
 /**
- * Provider responsible for a Document
+ * Provider responsible for a document
  *
  * @param ID ID of the Provider responsible for the document. This ID is required for Inpatient Visits
  * @param IDType ID type of the ID for the Provider responsible for the document
  * @param FirstName First name of the Provider responsible for the document
  * @param LastName Last name of the Provider responsible for the document
- * @param Type The type of provider for this referral. One of the following: "Referring Provider", "Referred To Provider", "Other", "Patient PCP"
  * @param Credentials List of credentials for the Provider responsible for the document. e.g. MD, PhD
  * @param Address Provider's address
+ * @param EmailAddresses Provider's email address(es)
+ * @param PhoneNumber Provider's office phone number. In E. 164 Format. (e.g. +16085551234)
+ * @param Type The type of provider for this referral. One of the following: "Referring Provider", "Referred To Provider", "Other", "Patient PCP"
+ * @param Location Provider's location
  */
 @jsonDefaults case class Provider(
   ID: Option[String] = None,
   IDType: Option[String] = None,
   FirstName: Option[String] = None,
   LastName: Option[String] = None,
-  Type: Option[String] = None,
   Credentials: Seq[String] = Seq.empty,
   Address: Option[Address] = None,
-  Location: Option[CareLocation] = None,
-  PhoneNumber: Option[PhoneNumber] = None,
   EmailAddresses: Seq[String] = Seq.empty,
-  Role: Option[BasicCode] = None
+  PhoneNumber: Option[PhoneNumber] = None,
+  Type: Option[String] = None,
+  Location: Option[CareLocation] = None,
 ) extends ProviderLike
 
 object Provider extends RobustPrimitives
@@ -44,9 +48,7 @@ trait ProviderLike {
 trait WithAddress { def Address: Option[Address] }
 trait WithPhoneNumber { def PhoneNumber: Option[PhoneNumber] }
 trait WithEmails { def EmailAddresses: Seq[String] }
-trait WithEmailObjects { def EmailAddresses: Seq[EmailAddress] }
 trait WithContactDetails extends WithAddress with WithPhoneNumber with WithEmails
-trait WithContactDetailObjects extends WithAddress with WithPhoneNumber with WithEmailObjects
 
 @jsonDefaults case class BasicPerson(
   FirstName: Option[String] = None,

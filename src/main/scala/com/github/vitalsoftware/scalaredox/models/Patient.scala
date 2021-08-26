@@ -9,19 +9,6 @@ import play.api.libs.json._
 
 import scala.collection.Seq
 
-/**
- * Patient identifier
- *
- * @param ID The actual identifier for the patient.
- * @param IDType An ID type associated with identifier (Medical Record Number, etc.)
- */
-@jsonDefaults case class Identifier(
-  ID: String,
-  IDType: String
-)
-
-object Identifier extends RobustPrimitives
-
 object RaceType extends Enumeration {
   val Asian, White, Unknown = Value
   val AmericanIndianOrAlaskanNative = Value("American Indian or Alaska Native")
@@ -70,26 +57,6 @@ object SexType extends Enumeration {
  * @param Religion List at https://www.hl7.org/fhir/v3/ReligiousAffiliation/index.html
  * @param MaritalStatus List at http://www.hl7.org/FHIR/v2/0002/index.html
  */
-@jsonDefaults case class ClinicalSummaryDemographics(
-  FirstName: String,
-  MiddleName: Option[String] = None,
-  LastName: String,
-  DOB: DateTime,
-  SSN: Option[String] = None,
-  Sex: SexType.Value = SexType.Unknown,
-  Address: Option[Address] = None,
-  PhoneNumber: Option[PhoneNumber] = None,
-  EmailAddresses: Seq[EmailAddress] = Seq.empty,
-  Language: Option[Language] = None,
-  Race: Option[RaceType.Value] = None,
-  Ethnicity: Option[String] = None,
-  Religion: Option[String] = None,
-  MaritalStatus: Option[String] = None
-) extends DemographicsLike
-    with WithContactDetailObjects
-
-object ClinicalSummaryDemographics extends RobustPrimitives
-
 @jsonDefaults case class Demographics(
   FirstName: Option[String],
   MiddleName: Option[String] = None,
@@ -107,20 +74,7 @@ object ClinicalSummaryDemographics extends RobustPrimitives
   Language: Option[Language] = None,
   Citizenship: Seq[String] = Seq.empty, // TODO ISO 3166
   Address: Option[Address] = None,
-) extends DemographicsLike
-    with WithContactDetails
-
-object Demographics extends RobustPrimitives
-
-trait DemographicsLike {
-  def MiddleName: Option[String]
-  def SSN: Option[String]
-  def Address: Option[Address]
-  def PhoneNumber: Option[PhoneNumber]
-  def Language: Option[Language]
-  def Race: Option[RaceType.Value]
-  def MaritalStatus: Option[String]
-}
+) extends WithContactDetails
 
 /**
  * @param RelationToPatient Personal relationship to the patient. e.x. Father, Spouse
@@ -141,13 +95,6 @@ object Contact extends RobustPrimitives
 /**
  * Patient
  */
-@jsonDefaults case class ClinicalSummaryPatient(
-  Identifiers: Seq[Identifier],
-  Demographics: Option[ClinicalSummaryDemographics] = None,
-) extends PatientLike
-
-object ClinicalSummaryPatient extends RobustPrimitives
-
 @jsonDefaults case class Patient(
   Identifiers: Seq[Identifier],
   Demographics: Option[Demographics] = None,
@@ -158,10 +105,6 @@ object ClinicalSummaryPatient extends RobustPrimitives
   Diagnoses: Seq[CodesetWithName] = Seq.empty,
   Allergies: Seq[Allergy] = Seq.empty,
   PCP: Option[Provider] = None
-) extends PatientLike
+)
 
 object Patient extends RobustPrimitives
-
-trait PatientLike {
-  def Identifiers: Seq[Identifier]
-}

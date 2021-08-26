@@ -6,51 +6,8 @@ import com.github.vitalsoftware.util.RobustPrimitives
 import scala.collection.Seq
 
 sealed trait RedoxMessage extends MetaLike
-sealed trait OtherPatientRedoxMessage extends RedoxMessage with HasPatient
-sealed trait ClinicalSummaryPatientRedoxMessage extends RedoxMessage with HasClinicalSummaryPatient
-sealed trait VisitRedoxMessage extends OtherPatientRedoxMessage with HasVisit
-
-// Common structure between Visit and ClinicalSummary
-sealed trait ClinicalSummaryLike extends ClinicalSummaryPatientRedoxMessage {
-  def Meta: Meta
-  def Header: Header
-  def Patient: ClinicalSummaryPatient = Header.Patient
-  def Allergies: Seq[Allergy]
-  def Encounters: Seq[Encounter]
-  def Medications: Seq[MedicationTaken]
-  def PlanOfCare: Option[PlanOfCare]
-  def Problems: Seq[Problem]
-  def Results: Seq[ChartResult]
-  def VitalSigns: Seq[VitalSigns]
-}
-
-/**
- * A Clinical Summary represents a snapshot of the patient's chart at a moment in time. It is structured in sections,
- * each focusing on a different aspect of the patient's chart, such as allergies, immunizations, and medications.
- * The full list of sections is at the left.
- *
- * You can obtain a Clinical Summary from an EHR via Query. You can send a Clinical Summary to an EHR via Push.
- */
-@jsonDefaults case class ClinicalSummary(
-  Meta: Meta,
-  Header: Header,
-  AdvanceDirectives: Seq[AdvanceDirective] = Seq.empty,
-  Allergies: Seq[Allergy] = Seq.empty,
-  Encounters: Seq[Encounter] = Seq.empty,
-  FamilyHistory: Seq[FamilyHistory] = Seq.empty,
-  Immunizations: Seq[Immunization] = Seq.empty,
-  Insurances: Seq[Insurance] = Seq.empty,
-  MedicalEquipment: Seq[MedicalEquipment] = Seq.empty,
-  Medications: Seq[MedicationTaken] = Seq.empty,
-  PlanOfCare: Option[PlanOfCare] = None,
-  Problems: Seq[Problem] = Seq.empty,
-  Procedures: Option[Procedures] = None,
-  Results: Seq[ChartResult] = Seq.empty,
-  SocialHistory: Option[SocialHistory] = None,
-  VitalSigns: Seq[VitalSigns] = Seq.empty
-) extends ClinicalSummaryLike
-
-object ClinicalSummary extends RobustPrimitives
+sealed trait PatientRedoxMessage extends RedoxMessage with HasPatient
+sealed trait VisitRedoxMessage extends PatientRedoxMessage with HasVisit
 
 /**
  * TODO: Running into Function22 and Tuple22 limits here...
@@ -113,7 +70,7 @@ object ClinicalSummary extends RobustPrimitives
   SubjectiveText: Option[String] = None,
   VitalSignsText: Option[String] = None,
   VitalSigns: Seq[VitalSigns] = Seq.empty
-) extends ClinicalSummaryLike
+)
 
 object Visit extends RobustPrimitives
 

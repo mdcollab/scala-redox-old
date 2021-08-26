@@ -22,7 +22,7 @@ import com.github.vitalsoftware.util.RobustPrimitives
   Locale: String = java.util.Locale.ROOT.toString, // TODO java.util.Locale
   Title: String,
   DateTime: DateTime,
-  Type: String
+  Type: String,
 ) extends HasVisitInfo
 
 object Document extends RobustPrimitives
@@ -35,7 +35,7 @@ object Document extends RobustPrimitives
  */
 @jsonDefaults case class Header(
   Document: Document,
-  Patient: ClinicalSummaryPatient
-) extends HasClinicalSummaryPatient
+  Patient: Patient
+) extends HasPatient
 
 object Header extends RobustPrimitives

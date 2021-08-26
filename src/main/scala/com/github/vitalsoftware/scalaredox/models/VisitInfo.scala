@@ -34,9 +34,9 @@ object VisitQueryParams extends RobustPrimitives
  */
 @jsonDefaults case class VisitQuery(
   Meta: Meta,
-  Patient: ClinicalSummaryPatient,
+  Patient: Patient,
   Visit: VisitQueryParams
-) extends HasClinicalSummaryPatient
+) extends HasPatient
 
 object VisitQuery extends RobustPrimitives
 
