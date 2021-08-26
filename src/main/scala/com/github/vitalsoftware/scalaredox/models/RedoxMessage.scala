@@ -44,7 +44,7 @@ sealed trait VisitRedoxMessage extends PatientRedoxMessage with HasVisit
  */
 @jsonDefaults case class Visit(
   Meta: Meta,
-  Header: Header,
+  Header: ClinicalSummaryHeader,
   AllergyText: Option[String] = None,
   Allergies: Seq[Allergy] = Seq.empty,
   AssessmentText: Option[String] = None,

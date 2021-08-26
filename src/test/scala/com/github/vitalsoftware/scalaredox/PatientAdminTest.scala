@@ -74,7 +74,9 @@ class PatientAdminTest extends Specification with RedoxTest {
           |            "Office": null,
           |            "Mobile": null
           |         },
-          |         "EmailAddresses": [],
+          |         "EmailAddresses": [
+          |            "testfake12312@gmail.com"
+          |         ],
           |         "Language": "en",
           |         "Citizenship": [],
           |         "Address": {
