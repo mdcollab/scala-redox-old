@@ -108,7 +108,7 @@ object ClinicalSummaryDocument extends RobustPrimitives
   DirectAddressTo: Option[String] = None,
   Document: ClinicalSummaryDocument,
   Patient: ClinicalSummaryPatient,
-  PCP: Provider,
+  PCP: Option[Provider] = None,
 ) extends HasClinicalSummaryPatient
 
 object ClinicalSummaryHeader extends RobustPrimitives

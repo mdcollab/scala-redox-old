@@ -422,6 +422,7 @@ class PatientAdminTest extends Specification with RedoxTest {
       val patient = patientAdmin.Patient
       patient.Identifiers.size must be equalTo 3
       patient.Demographics must beSome
+      patient.Demographics.get.EmailAddresses must not be empty
 
       // Visit
       val visit = patientAdmin.Visit
