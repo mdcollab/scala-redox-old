@@ -2,6 +2,13 @@ package com.github.vitalsoftware.scalaredox
 
 import com.github.vitalsoftware.scalaredox.client.EmptyResponse
 import com.github.vitalsoftware.scalaredox.models._
+import com.github.vitalsoftware.scalaredox.models.clinicalsummary.{
+  Demographics,
+  Patient,
+  PatientPush,
+  PatientQuery,
+  PatientQueryResponse
+}
 import org.joda.time.DateTime
 import org.specs2.mutable.Specification
 
@@ -16,10 +23,9 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
     "return an error" in {
       val shouldFailQuery = PatientQuery(
         Meta(DataModel = DataModelTypes.ClinicalSummary, EventType = RedoxEventTypes.Query),
-        ClinicalSummaryPatient(
+        Patient(
           Identifiers = Seq.empty,
-          Demographics =
-            Some(ClinicalSummaryDemographics("John", None, "Doe", DateTime.parse("1970-1-1"), Sex = SexType.Male))
+          Demographics = Some(Demographics("John", None, "Doe", DateTime.parse("1970-1-1"), Sex = SexType.Male))
         )
       )
       val fut = client.get[PatientQuery, PatientQueryResponse](shouldFailQuery)
