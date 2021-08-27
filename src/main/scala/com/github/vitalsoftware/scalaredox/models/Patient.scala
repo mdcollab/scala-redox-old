@@ -96,14 +96,13 @@ object Contact extends RobustPrimitives
  * Patient
  */
 @jsonDefaults case class Patient(
-  Identifiers: Seq[Identifier],
+  Identifiers: Seq[Identifier] = Seq.empty,
   Demographics: Option[Demographics] = None,
   Notes: Seq[String] = Seq.empty,
   Contacts: Seq[Contact] = Seq.empty,
   Guarantor: Option[Guarantor] = None,
   Insurances: Seq[Insurance] = Seq.empty,
   Diagnoses: Seq[CodesetWithName] = Seq.empty,
-  Allergies: Seq[Allergy] = Seq.empty,
   PCP: Option[Provider] = None
 )
 
