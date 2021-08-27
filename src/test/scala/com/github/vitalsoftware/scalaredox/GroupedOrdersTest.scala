@@ -453,7 +453,7 @@ class GroupedOrdersTest extends Specification with RedoxTest {
 
       val patient = data.Patient
       patient.Demographics must beSome
-      patient.Demographics.get.Sex.get must beEqualTo(SexType.Female)
+      patient.Demographics.get.Sex must beEqualTo(SexType.Female)
       patient.Demographics.get.EmailAddresses must not be empty
     }
   }
