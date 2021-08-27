@@ -1114,7 +1114,7 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
       h.Patient.Demographics.flatMap(_.PhoneNumber) must beSome
       h.Patient.Demographics.get.EmailAddresses must not be empty
       h.Patient.Demographics.get.EmailAddresses.size must be equalTo (1)
-      h.Patient.Demographics.get.EmailAddresses.head.Address must be equalTo ("12313124@fake.com")
+      h.Patient.Demographics.get.EmailAddresses.head.Address.get must be equalTo ("12313124@fake.com")
 
       // Collections
       clinicalSummary.AdvanceDirectives must not be empty
