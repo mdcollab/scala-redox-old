@@ -58,23 +58,23 @@ object SexType extends Enumeration {
  * @param MaritalStatus List at http://www.hl7.org/FHIR/v2/0002/index.html
  */
 @jsonDefaults case class Demographics(
-  FirstName: Option[String],
-  MiddleName: Option[String] = None,
-  LastName: Option[String],
+  FirstName: String,
+  LastName: String,
   DOB: Option[DateTime] = None,
   SSN: Option[String] = None,
-  Sex: Option[SexType.Value] = None,
-  Race: Option[RaceType.Value] = None,
-  IsHispanic: Option[Boolean] = None,
-  MaritalStatus: Option[String] = None,
-  IsDeceased: Option[Boolean] = None,
-  DeathDateTime: Option[DateTime] = None,
+  Sex: SexType.Value = SexType.Unknown,
+  Address: Option[Address] = None,
   PhoneNumber: Option[PhoneNumber] = None,
   EmailAddresses: Seq[String] = Seq.empty,
   Language: Option[Language] = None,
   Citizenship: Seq[String] = Seq.empty, // TODO ISO 3166
-  Address: Option[Address] = None,
+  Race: Option[RaceType.Value] = None,
+  IsHispanic: Option[Boolean] = None,
+  Religion: Option[String] = None,
+  MaritalStatus: Option[String] = None
 ) extends WithContactDetails
+
+object Demographics extends RobustPrimitives
 
 /**
  * @param RelationToPatient Personal relationship to the patient. e.x. Father, Spouse
