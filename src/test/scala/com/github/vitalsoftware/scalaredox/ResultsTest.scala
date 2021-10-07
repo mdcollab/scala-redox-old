@@ -335,7 +335,7 @@ class ResultsTest extends Specification with RedoxTest {
       result.Extensions must beSome
       result.AbnormalFlag must beSome(AbnormalFlagTypes.VeryAbnormal)
       result.Status must beSome(ResultStatusTypes.Final)
-      result.CompletionDateTime must beSome(DateTime.fromIsoDateTimeString("2015-05-06T06:00:58.872Z"))
+      result.CompletionDateTime must beSome(DateTime.fromIsoDateTimeString("2015-05-06T06:00:58.872Z").get)
 
       val extension = result.Extensions.get
       extension.`device-id` must beSome
