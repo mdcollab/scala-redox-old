@@ -1,6 +1,6 @@
 package com.github.vitalsoftware.scalaredox
 
-import akka.http.scaladsl.model.DateTime
+import org.joda.time.DateTime
 import com.github.vitalsoftware.scalaredox.client.EmptyResponse
 import com.github.vitalsoftware.scalaredox.models.{AbnormalFlagTypes, OrderResultsStatusTypes, Result, ResultStatusTypes, ResultsMessage, ResultsStatusTypes}
 import org.specs2.mutable.Specification
