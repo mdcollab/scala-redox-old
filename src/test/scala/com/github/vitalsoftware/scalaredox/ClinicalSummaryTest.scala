@@ -2192,7 +2192,7 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
           |}
         """.stripMargin
 
-      val patientPush = validateJsonInput[PatientPush](json)
+      val patientPush = validateJsonInput[clinicalsummary.inbound.PatientPush](json)
 
       // Check chart deserialization
 
@@ -2247,7 +2247,7 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
 
       // Check request and response message
 
-      val fut = client.post[PatientPush, EmptyResponse](patientPush)
+      val fut = client.post[clinicalsummary.inbound.PatientPush, EmptyResponse](patientPush)
       val maybe = handleResponse(fut)
       maybe must beSome
     }
