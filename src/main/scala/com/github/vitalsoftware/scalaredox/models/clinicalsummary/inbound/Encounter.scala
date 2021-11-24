@@ -7,31 +7,6 @@ import com.github.vitalsoftware.util.RobustPrimitives
 import org.joda.time.DateTime
 
 /**
- * Patient identifier
- *
- * @param ID The actual identifier for the patient.
- * @param IDType An ID type associated with identifier (Medical Record Number, etc.)
- */
-@jsonDefaults case class Identifier(
-  ID: Option[String] = None,
-  IDType: Option[String] = None
-)
-
-/**
- * Location of provider or care given.
- *
- * @see https://phinvads.cdc.gov/vads/ViewCodeSystem.action?id=2.16.840.1.113883.6.259
- * Note: Seems duplicative of CareLocation, but described using the generic 'Code' object
- */
-@jsonDefaults case class Location(
-  Address: Option[Address] = None,
-  Type: BasicCode = BasicCode(),
-  Name: Option[String] = None
-)
-
-object Location extends RobustPrimitives
-
-/**
  *
  * @param Type A code describing the type of encounter (office visit, hospital, etc). CPT-4
  * @param DateTime When the encounter took place, or alternatively when the encounter began if Encounters[].EndDateTime is present. ISO 8601 Format
