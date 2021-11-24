@@ -23,7 +23,7 @@ object RedoxEventTypes extends Enumeration {
   // format: off
   val Arrival, AvailableSlots, AvailableSlotsResponse, Booked, BookedResponse, Cancel, Delete, Deplete, Discharge,
       GroupedOrders, Modification, Modify, New, NewPatient, NewUnsolicited, NoShow, PatientMerge, PatientQuery,
-      PatientQueryResponse, PatientPush, PatientUpdate, Payment, PreAdmit, Push, Query, Registration, Replace,
+      PatientQueryResponse, PatientPush, PatientInboundPush, PatientUpdate, Payment, PreAdmit, Push, Query, Registration, Replace,
       Reschedule, Response, Submission, Transaction, Transfer, Update, VisitMerge, VisitQuery, VisitQueryResponse,
       VisitPush, VisitUpdate, Administration, Invalid = Value
   // format: on
