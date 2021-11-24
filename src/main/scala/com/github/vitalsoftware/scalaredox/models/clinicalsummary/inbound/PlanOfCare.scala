@@ -1,6 +1,7 @@
 package com.github.vitalsoftware.scalaredox.models.clinicalsummary.inbound
 
 import com.github.vitalsoftware.macros.jsonDefaults
+import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.scalaredox.models.{ BasicCode, CodeWithStatus, Dose, TimePeriod }
 import com.github.vitalsoftware.util.RobustPrimitives
 import org.joda.time.DateTime
