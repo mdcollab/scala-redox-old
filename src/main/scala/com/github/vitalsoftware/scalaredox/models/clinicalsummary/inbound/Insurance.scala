@@ -124,8 +124,8 @@ object Guarantor extends RobustPrimitives
   EffectiveDate: Option[String] = None,
   ExpirationDate: Option[String] = None,
   PolicyNumber: Option[String] = None,
-  AgreementType: Option[InsuranceAgreementTypes.Value] = None,
-  CoverageType: Option[InsuranceCoverageTypes.Value] = None,
+  AgreementType: Option[String] = None,
+  CoverageType: Option[String] = None,
   Insured: Option[InsuredPerson] = None
 )
 
