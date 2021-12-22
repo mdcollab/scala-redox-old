@@ -236,7 +236,12 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
           |		},
           |		"Transmission": {
           |			"ID": 12414
-          |		}
+          |		},
+          |   "Extensions": {
+          |     "timezone": {
+          |        "string": "America/Denver"
+          |      }
+          |   }
           |	},
           |	"Header": {
           |		"Document": {
@@ -1171,6 +1176,7 @@ class ClinicalSummaryTest extends Specification with RedoxTest {
       val meta = patientPush.Meta
       meta.EventType must be equalTo RedoxEventTypes.PatientPush
       meta.Destinations must not be empty
+      meta.Extensions.get.timezone.get.string must be equalTo ("America/Denver")
 
       // Header
       val h = patientPush.Header

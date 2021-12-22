@@ -20,6 +20,7 @@ import com.github.vitalsoftware.util.RobustPrimitives
   url: String,
   string: String,
 )
+//@json case class TimeZoneText(string: String)
 
 @json case class DeviceIdExtension(url: String, string: String)
 
@@ -32,6 +33,8 @@ import com.github.vitalsoftware.util.RobustPrimitives
 @json case class OrganizationIdExtension(url: String, string: String)
 
 @json case class DocumentExtension(filename: Option[DocumentFilename] = None)
+
+@json case class TimeZoneExtension(string: String)
 
 // Carequality extensions present in Meta object for queries
 @json case class SenderOrganizationIdExtension(url: String, string: String) // Carequality Organization OID
@@ -61,6 +64,7 @@ import com.github.vitalsoftware.util.RobustPrimitives
   `user-id`: Option[UserIdExtension] = None,
   `user-role`: Option[UserRoleExtension] = None,
   `purpose-of-use`: Option[PurposeOfUseExtension] = None,
+  timezone: Option[TimeZoneExtension] = None,
 )
 
 object Extension extends RobustPrimitives
