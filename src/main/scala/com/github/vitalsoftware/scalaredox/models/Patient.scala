@@ -97,6 +97,20 @@ object Contact extends RobustPrimitives
  */
 @jsonDefaults case class Patient(
   Identifiers: Seq[Identifier] = Seq.empty,
+  Demographics: Option[Demographics] = None,
+  Notes: Seq[String] = Seq.empty,
+  Contacts: Seq[Contact] = Seq.empty,
+  Guarantor: Option[Guarantor] = None,
+  Insurances: Seq[Insurance] = Seq.empty,
+  Diagnoses: Seq[CodesetWithName] = Seq.empty,
+  PCP: Option[Provider] = None
+)
+
+/**
+ * Merged Patient has extra "previous identifiers" to indicate retired MRNs
+ */
+@jsonDefaults case class MergedPatient(
+  Identifiers: Seq[Identifier] = Seq.empty,
   PreviousIdentifiers: Seq[Identifier] = Seq.empty,
   Demographics: Option[Demographics] = None,
   Notes: Seq[String] = Seq.empty,
