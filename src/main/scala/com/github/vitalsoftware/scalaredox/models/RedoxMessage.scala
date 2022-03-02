@@ -7,6 +7,7 @@ import scala.collection.Seq
 
 sealed trait RedoxMessage extends MetaLike
 sealed trait PatientRedoxMessage extends RedoxMessage with HasPatient
+sealed trait PatientMergedRedoxMessage extends RedoxMessage with HasMergedPatient
 sealed trait VisitRedoxMessage extends PatientRedoxMessage with HasVisit
 
 /**
@@ -183,7 +184,7 @@ object PatientSearch extends RobustPrimitives
 
 /**
  * Meta.DataModel: "PatientAdmin",
- * Meta.EventType: {Arrival, Cancel, Discharge, NewPatient, PatientUpdate, PatientMerge, PreAdmit, Registration, Transfer, VisitMerge, VisitUpdate}
+ * Meta.EventType: {Arrival, Cancel, Discharge, NewPatient, PatientUpdate, PreAdmit, Registration, Transfer, VisitMerge, VisitUpdate}
  */
 @jsonDefaults case class PatientAdminMessage(
   Meta: Meta,
@@ -193,6 +194,17 @@ object PatientSearch extends RobustPrimitives
     with HasVisitInfo
 
 object PatientAdminMessage extends RobustPrimitives
+
+/**
+ * Meta.DataModel: "PatientAdmin",
+ * Meta.EventType: "PatientMerge"
+ */
+@jsonDefaults case class PatientAdminMergedMessage(
+  Meta: Meta,
+  Patient: MergedPatient,
+) extends PatientMergedRedoxMessage
+
+object PatientAdminMergedMessage extends RobustPrimitives
 
 /**
  * Results messages communicate results of diagnostic tests such as labs, radiology imaging, etc.
