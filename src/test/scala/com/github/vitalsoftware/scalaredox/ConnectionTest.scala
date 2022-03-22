@@ -74,7 +74,7 @@ class ConnectionTest extends Specification with RedoxTest {
 
           val f3 = tokenManager.getAccessToken(conf.apiKey, conf.apiSecret)
           val auth3 = Await.result(f3, timeout)
-          auth3.accessToken mustEqual ("refreshed")
+          auth3.accessToken mustEqual ("access")
         }
       }
     }

@@ -52,7 +52,7 @@ class RedoxTokenManager(
       .map(Future.successful(_))
       .getOrElse {
         val authInfo = authenticate(apiKey, apiSecret)
-        authInfo.foreach(setAuthAndScheduleRefresh(apiKey, _))
+        authInfo.foreach(setAuthAndScheduleRefresh(apiKey, apiSecret, _))
         authInfo
       }
 
@@ -67,9 +67,9 @@ class RedoxTokenManager(
   }
 
   /** Set a thread-safe auth-token, and schedule a refresh. */
-  private def setAuthAndScheduleRefresh(apiKey: String, authInfo: AuthInfo): Unit = {
+  private def setAuthAndScheduleRefresh(apiKey: String, apiSecret: String,authInfo: AuthInfo): Unit = {
     TokenStore.update(apiKey, authInfo)
-    scheduleRefresh(apiKey: String, authInfo)
+    scheduleRefresh(apiKey, apiSecret, authInfo)
   }
 
   /**
@@ -77,10 +77,10 @@ class RedoxTokenManager(
    * NOTE: If this method is overridden, scheduling and storing the new auth token will
    * not be available to the implementing class.
    */
-  protected def scheduleRefresh(apiKey: String, auth: AuthInfo): Unit = {
+  protected def scheduleRefresh(apiKey: String, apiSecret: String, auth: AuthInfo): Unit = {
     val delay = auth.expires.getMillis - DateTime.now.getMillis - RefreshBuffer.toMillis
     actorSystem.scheduler.scheduleOnce(delay.millis) {
-      refresh(apiKey, auth).foreach(setAuthAndScheduleRefresh(apiKey, _))
+      authenticate(apiKey, apiSecret).foreach(setAuthAndScheduleRefresh(apiKey, apiSecret, _))
     }
   }
 
