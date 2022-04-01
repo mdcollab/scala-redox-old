@@ -22,10 +22,10 @@ object RedoxEventTypes extends Enumeration {
   val QueryResponse: Value = Value("Query Response")
   // format: off
   val Arrival, AvailableSlots, AvailableSlotsResponse, Booked, BookedResponse, Cancel, Delete, Deplete, Discharge,
-      GroupedOrders, Modification, Modify, New, NewPatient, NewUnsolicited, NoShow, PatientMerge, PatientQuery,
-      PatientQueryResponse, PatientPush, PatientUpdate, Payment, PreAdmit, Push, Query, Registration, Replace,
-      Reschedule, Response, Submission, Transaction, Transfer, Update, VisitMerge, VisitQuery, VisitQueryResponse,
-      VisitPush, VisitUpdate, Administration, Invalid = Value
+      DocumentGet, DocumentQuery, GroupedOrders, LocationQuery,  Modification, Modify, New, NewPatient, NewUnsolicited, 
+      NoShow, PatientMerge, PatientQuery, PatientQueryResponse, PatientPush, PatientUpdate, Payment, PreAdmit, Push, 
+      Query, Registration, Replace, Reschedule, Response, Submission, Transaction, Transfer, Update, VisitMerge, 
+      VisitQuery, VisitQueryResponse, VisitPush, VisitUpdate, Administration, Invalid = Value
   // format: on
 
   @transient implicit lazy val jsonFormat: Format[RedoxEventTypes.Value] =

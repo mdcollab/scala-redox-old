@@ -169,6 +169,48 @@ object OrderMessage extends RobustPrimitives
 object GroupedOrdersMessage extends RobustPrimitives
 
 /**
+ * Manage organizational directory entries
+ * Meta.DataModel: "Organization"
+ * Meta.EventType: {New, Update}
+ */
+@jsonDefaults case class Organization(
+  Meta: Meta,
+  Directory: String,
+  Organizations: Seq[OrganizationEntry] = Seq.empty,
+)
+object Organization extends RobustPrimitives
+
+/**
+ * Query the organizational directory.
+ * Meta.DataModel: "Organization"
+ * Meta.EventType: Query
+ */
+@jsonDefault case class OrganizationQuery(
+  Meta: Meta,
+  Directory: String,
+  Identifier: Option[Identifier] = None,
+   NameSearch: Option[OrganizationNameSearch] = None,
+   State: Option[String] = None,
+   RadiusSearch: Option[OrganizationRadiusSearch] = None,
+   LastUpdated: Option[DateTime] = None,
+   Index: Option[Int] = None,
+   Limit: Option[Int] = None,
+)
+object OrganizationQuery extends RobustPrimitives
+
+/** Response for organizational directory query
+ * Meta.DataModel: Organization
+ * Meta.EventType: Query
+ */
+@jsonDefault case class OrganizationQueryResponse(
+  Meta: Meta,
+  Directory: String,
+  Organizations: Seq[OrganizationEntry] = Seq.empty,
+  Paging: Option[OrganizationPaging] = None,
+)
+object OrganizationQueryResponse extends RobustPrimitives
+
+/**
  * Used for both query (without the 'PotentialMatches') and holding the response to a patient search query.
  *
  * Meta.DataModel: "PatientSearch",
