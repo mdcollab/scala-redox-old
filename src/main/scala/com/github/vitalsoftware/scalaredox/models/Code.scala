@@ -86,5 +86,5 @@ object SimpleCode extends RobustPrimitives
   Type: Option[String],
   System: Option[String],
   Value: Option[String],
-) extends SimpleCode
+)
 object SimpleCodeWithType extends RobustPrimitives

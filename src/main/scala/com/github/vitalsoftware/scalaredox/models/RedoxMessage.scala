@@ -2,6 +2,9 @@ package com.github.vitalsoftware.scalaredox.models
 
 import com.github.vitalsoftware.macros.jsonDefaults
 import com.github.vitalsoftware.util.RobustPrimitives
+import org.joda.time.DateTime
+import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
+import play.api.libs.json.{ Format, Reads, Writes }
 
 import scala.collection.Seq
 
@@ -185,7 +188,7 @@ object Organization extends RobustPrimitives
  * Meta.DataModel: "Organization"
  * Meta.EventType: Query
  */
-@jsonDefault case class OrganizationQuery(
+@jsonDefaults case class OrganizationQuery(
   Meta: Meta,
   Directory: String,
   Identifier: Option[Identifier] = None,
@@ -202,7 +205,7 @@ object OrganizationQuery extends RobustPrimitives
  * Meta.DataModel: Organization
  * Meta.EventType: Query
  */
-@jsonDefault case class OrganizationQueryResponse(
+@jsonDefaults case class OrganizationQueryResponse(
   Meta: Meta,
   Directory: String,
   Organizations: Seq[OrganizationEntry] = Seq.empty,
