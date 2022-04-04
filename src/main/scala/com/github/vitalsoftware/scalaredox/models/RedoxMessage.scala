@@ -221,7 +221,7 @@ object OrganizationQueryResponse extends RobustPrimitives
  */
 @jsonDefaults case class PatientSearch(
   Meta: Meta,
-  Patient: Option[Patient] = None,
+  Patient: Option[PatientSearchPatient] = None,
   PotentialMatches: Seq[Patient] = Seq.empty
 ) extends RedoxMessage
 

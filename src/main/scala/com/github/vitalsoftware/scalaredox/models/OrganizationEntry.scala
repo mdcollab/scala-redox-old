@@ -19,6 +19,11 @@ import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 )
 object OrganizationEntry extends RobustPrimitives
 
+@jsonDefaults case class OrganizationIdentifiers(
+    Identifiers: Seq[Identifier] = Seq.empty
+)
+object OrganizationIdentifiers extends RobustPrimitives
+
 @jsonDefaults case class OrganizationAttributes(
     Transaction: Option[String] = None,
     Actor: Option[SimpleCode] = None,
