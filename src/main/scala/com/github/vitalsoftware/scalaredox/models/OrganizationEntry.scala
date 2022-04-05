@@ -6,8 +6,8 @@ import play.api.libs.json.{ Format, Reads, Writes }
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 
 @jsonDefaults case class OrganizationEntry(
-    Active: Boolean,
-    Name: String,
+    Active: Option[Boolean] = None,
+    Name: Option[String]  = None,
     Aliases: Seq[String] = Seq.empty,
     Identifiers: Seq[Identifier] = Seq.empty,
     Type: Option[SimpleCode] = None,
@@ -18,11 +18,6 @@ import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
     DestinationID: Option[String] = None,
 )
 object OrganizationEntry extends RobustPrimitives
-
-@jsonDefaults case class OrganizationIdentifiers(
-    Identifiers: Seq[Identifier] = Seq.empty
-)
-object OrganizationIdentifiers extends RobustPrimitives
 
 @jsonDefaults case class OrganizationAttributes(
     Transaction: Option[String] = None,

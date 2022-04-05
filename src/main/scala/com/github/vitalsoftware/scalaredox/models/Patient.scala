@@ -131,9 +131,24 @@ object MergedPatient extends RobustPrimitives
 @jsonDefaults case class PatientSearchPatient(
   Identifiers: Seq[Identifier] = Seq.empty,
   Demographics: Option[Demographics] = None,
-  Organization: Option[OrganizationIdentifiers] = None,
   Notes: Seq[String] = Seq.empty,
 )
-
 object PatientSearchPatient extends RobustPrimitives
+
+/**
+ * PatientSearch response only includes identifiers
+ */
+@jsonDefaults case class PatientSearchResponsePatient(Identifiers: Seq[Identifier])
+object PatientSearchResponsePatient extends RobustPrimitives
+
+/**
+ * PatientSearch^LocationQuery returns patient identifiers + organization
+ */
+@jsonDefaults case class LocationQueryPatient(
+  Identifiers: Seq[Identifier] = Seq.empty,
+  Organization: Option[OrganizationEntry] = None,
+)
+
+object LocationQueryPatient extends RobustPrimitives
+
 

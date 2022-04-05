@@ -214,18 +214,113 @@ object OrganizationQuery extends RobustPrimitives
 object OrganizationQueryResponse extends RobustPrimitives
 
 /**
- * Used for both query (without the 'PotentialMatches') and holding the response to a patient search query.
+ * Used to search for a patient by demographics
  *
  * Meta.DataModel: "PatientSearch",
- * Meta.EventType: {Query, Response}
+ * Meta.EventType: Query
  */
-@jsonDefaults case class PatientSearch(
+@jsonDefaults case class PatientSearchQuery(
   Meta: Meta,
   Patient: Option[PatientSearchPatient] = None,
   PotentialMatches: Seq[Patient] = Seq.empty
 ) extends RedoxMessage
 
+object PatientSearchQuery extends RobustPrimitives
+
+/** Response from Redox's "Record Locator Service for Carequality" patient search only includes a "Redox Patient ID"
+ * Meta.DataModel: "PatientSearch"
+ * Meta.EventType: Query
+ */
+@jsonDefaults case class PatientSearchRLSCarequalityResponse(
+  Meta: Meta,
+  Patient: Option[PatientSearchPatient]
+)
+object PatientSearchRLSCarequalityResponse extends RobustPrimitives
+
+/**
+ * Response to the above PatientSearch
+ *
+ * Meta.DataModel: "PatientSearch",
+ * Meta.EventType: Response
+ */
+@jsonDefaults case class PatientSearchResponse(
+  Meta: Meta,
+  Patient: Option[Patient] = None,
+  PotentialMatches: Seq[Patient] = Seq.empty
+) extends RedoxMessage
+
 object PatientSearch extends RobustPrimitives
+
+/**
+ *  Used for finding patient identifiers at various organizations in an organizational directory, given
+ *  a universal "redox patient id" in a PatientSearch^LocationQuery request
+ *  Meta.DataModel: "PatientSearch"
+ *  Meta.EventType: "LocationQuery"
+ */
+@jsonDefaults case class LocationQuery(
+  Meta: Meta,
+  Patient: Option[LocationQueryPatient] = None,
+)
+object LocationQuery extends RobustPrimitives
+
+/**
+ * Response class for the above LocationQuery with matching patients + organizational IDs for each organization
+ * in the directory that knows about this patient
+ * Meta.DataModel: "PatientSearch"
+ * Meta.EventType: "LocationQueryResponse"
+ */
+@jsonDefaults case class LocationQueryResponse(
+  Meta: Meta,
+  Patients: Seq[LocationQueryPatient] = Seq.empty,
+)
+object LocationQueryResponse extends RobustPrimitives
+
+/**
+ * Query an organization for patient documents given the patient's Identifier(s)
+ * Meta.DataModel: "ClinicalSummary"
+ * Meta.EventType: "DocumentQuery"
+ */
+@jsonDefaults case class DocumentQuery(
+  Meta: Meta,
+  Patient: Option[clinicalsummary.Patient] = None,
+)
+object DocumentQuery extends RobustPrimitives
+
+/**
+ * Response to DocumentQuery includes document Identifiers for the patient
+ * Meta.DataModel: "ClinicalSummary"
+ * Meta.EventType: "DocumentQuery"
+ */
+@jsonDefaults case class DocumentQueryResponse(
+  Meta: Meta,
+  Patient: Option[clinicalsummary.Patient] = None,
+  Documents: Seq[clinicalsummary.Document] = Seq.empty,
+)
+
+object DocumentQueryResponse extends RobustPrimitives
+
+/**
+ * Get a single document for a patient from an organization
+ * Meta.DataModel: "ClinicalSummary"
+ * Meta.EventType: "DocumentGet"
+ */
+@jsonDefaults case class DocumentGet(
+  Meta: Meta,
+  Document: Option[clinicalsummary.Document] = None, // Only ID is needed for this query
+)
+object DocumentGet extends RobustPrimitives
+
+/**
+ * Response for a DocumentGet request includes the document ID and the XML data
+ * Meta.DataModel: "ClinicalSummary"
+ * Meta.EventType: "DocumentGet"
+ */
+@jsonDefaults case class DocumentGetResponse(
+  Meta: Meta,
+  Document: Option[clinicalsummary.Document] = None, 
+  Data: String,
+)
+object DocumentGetResponse extends RobustPrimitives
 
 /**
  * Meta.DataModel: "PatientAdmin",
