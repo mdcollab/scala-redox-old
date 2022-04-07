@@ -237,18 +237,18 @@ object PatientSearchQuery extends RobustPrimitives
 object PatientSearchRLSCarequalityResponse extends RobustPrimitives
 
 /**
- * Response to the above PatientSearch
+ * Response to the above PatientSearch. Can be used as the query in some cases too
  *
  * Meta.DataModel: "PatientSearch",
- * Meta.EventType: Response
+ * Meta.EventType: Response|Query
  */
-@jsonDefaults case class PatientSearchResponse(
+@jsonDefaults case class PatientSearch(
   Meta: Meta,
   Patient: Option[Patient] = None,
   PotentialMatches: Seq[Patient] = Seq.empty
 ) extends RedoxMessage
 
-object PatientSearchResponse extends RobustPrimitives
+object PatientSearch extends RobustPrimitives
 
 /**
  *  Used for finding patient identifiers at various organizations in an organizational directory, given

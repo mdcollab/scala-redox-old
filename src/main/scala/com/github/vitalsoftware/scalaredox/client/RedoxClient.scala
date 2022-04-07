@@ -146,6 +146,7 @@ object RedoxClient {
         case (Notes, _)                                              => Right(implicitly[Reads[models.NoteMessage]])
         case (PatientAdmin, PatientMerge)                            => Right(implicitly[Reads[models.PatientAdminMergedMessage]])
         case (PatientAdmin, _)                                       => Right(implicitly[Reads[models.PatientAdminMessage]])
+        case (PatientSearch, _)                                      => Right(implicitly[Reads[models.PatientSearch]])
         case (Referral, _)                                           => Left(unsupported)
         case (Results, _)                                            => Right(implicitly[Reads[models.ResultsMessage]])
         case (Scheduling, _)                                         => Left(unsupported)
