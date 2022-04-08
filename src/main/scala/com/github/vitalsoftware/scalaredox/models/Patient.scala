@@ -103,8 +103,10 @@ object Contact extends RobustPrimitives
   Guarantor: Option[Guarantor] = None,
   Insurances: Seq[Insurance] = Seq.empty,
   Diagnoses: Seq[CodesetWithName] = Seq.empty,
-  PCP: Option[Provider] = None
+  PCP: Option[Provider] = None,
 )
+
+object Patient extends RobustPrimitives
 
 /**
  * Merged Patient has extra "previous identifiers" to indicate retired MRNs
@@ -121,4 +123,32 @@ object Contact extends RobustPrimitives
   PCP: Option[Provider] = None
 )
 
-object Patient extends RobustPrimitives
+object MergedPatient extends RobustPrimitives
+
+/**
+ * PatientSearch datamodel only includes demographics + organizations
+ */
+@jsonDefaults case class PatientSearchPatient(
+  Identifiers: Seq[Identifier] = Seq.empty,
+  Demographics: Option[Demographics] = None,
+  Notes: Seq[String] = Seq.empty,
+)
+object PatientSearchPatient extends RobustPrimitives
+
+/**
+ * PatientSearch response only includes identifiers
+ */
+@jsonDefaults case class PatientSearchResponsePatient(Identifiers: Seq[Identifier])
+object PatientSearchResponsePatient extends RobustPrimitives
+
+/**
+ * PatientSearch^LocationQuery returns patient identifiers + organization
+ */
+@jsonDefaults case class LocationQueryPatient(
+  Identifiers: Seq[Identifier] = Seq.empty,
+  Organization: Option[OrganizationEntry] = None,
+)
+
+object LocationQueryPatient extends RobustPrimitives
+
+

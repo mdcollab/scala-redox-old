@@ -75,3 +75,16 @@ object BasicCodeset extends RobustPrimitives
 ) extends Codeset
 
 object CodesetWithName extends RobustPrimitives
+
+@jsonDefaults case class SimpleCode(
+    System: Option[String],
+    Value: Option[String],
+)
+object SimpleCode extends RobustPrimitives
+
+@jsonDefaults case class SimpleCodeWithType(
+  Type: Option[String],
+  System: Option[String],
+  Value: Option[String],
+)
+object SimpleCodeWithType extends RobustPrimitives

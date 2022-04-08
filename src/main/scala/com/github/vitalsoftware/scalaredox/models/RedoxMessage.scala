@@ -2,6 +2,9 @@ package com.github.vitalsoftware.scalaredox.models
 
 import com.github.vitalsoftware.macros.jsonDefaults
 import com.github.vitalsoftware.util.RobustPrimitives
+import org.joda.time.DateTime
+import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
+import play.api.libs.json.{ Format, Reads, Writes }
 
 import scala.collection.Seq
 
@@ -169,10 +172,75 @@ object OrderMessage extends RobustPrimitives
 object GroupedOrdersMessage extends RobustPrimitives
 
 /**
- * Used for both query (without the 'PotentialMatches') and holding the response to a patient search query.
+ * Manage organizational directory entries
+ * Meta.DataModel: "Organization"
+ * Meta.EventType: {New, Update}
+ */
+@jsonDefaults case class Organization(
+  Meta: Meta,
+  Directory: String,
+  Organizations: Seq[OrganizationEntry] = Seq.empty,
+)
+object Organization extends RobustPrimitives
+
+/**
+ * Query the organizational directory.
+ * Meta.DataModel: "Organization"
+ * Meta.EventType: Query
+ */
+@jsonDefaults case class OrganizationQuery(
+  Meta: Meta,
+  Directory: String,
+  Identifier: Option[Identifier] = None,
+   NameSearch: Option[OrganizationNameSearch] = None,
+   State: Option[String] = None,
+   RadiusSearch: Option[OrganizationRadiusSearch] = None,
+   LastUpdated: Option[DateTime] = None,
+   Index: Option[Int] = None,
+   Limit: Option[Int] = None,
+)
+object OrganizationQuery extends RobustPrimitives
+
+/** Response for organizational directory query
+ * Meta.DataModel: Organization
+ * Meta.EventType: Query
+ */
+@jsonDefaults case class OrganizationQueryResponse(
+  Meta: Meta,
+  Directory: String,
+  Organizations: Seq[OrganizationEntry] = Seq.empty,
+  Paging: Option[OrganizationPaging] = None,
+)
+object OrganizationQueryResponse extends RobustPrimitives
+
+/**
+ * Used to search for a patient by demographics
  *
  * Meta.DataModel: "PatientSearch",
- * Meta.EventType: {Query, Response}
+ * Meta.EventType: Query
+ */
+@jsonDefaults case class PatientSearchQuery(
+  Meta: Meta,
+  Patient: Option[PatientSearchPatient] = None,
+) extends RedoxMessage
+
+object PatientSearchQuery extends RobustPrimitives
+
+/** Response from Redox's "Record Locator Service for Carequality" patient search only includes a "Redox Patient ID"
+ * Meta.DataModel: "PatientSearch"
+ * Meta.EventType: Query
+ */
+@jsonDefaults case class PatientSearchRLSCarequalityResponse(
+  Meta: Meta,
+  Patient: Option[PatientSearchPatient]
+)
+object PatientSearchRLSCarequalityResponse extends RobustPrimitives
+
+/**
+ * Response to the above PatientSearch. Can be used as the query in some cases too
+ *
+ * Meta.DataModel: "PatientSearch",
+ * Meta.EventType: Response|Query
  */
 @jsonDefaults case class PatientSearch(
   Meta: Meta,
@@ -181,6 +249,30 @@ object GroupedOrdersMessage extends RobustPrimitives
 ) extends RedoxMessage
 
 object PatientSearch extends RobustPrimitives
+
+/**
+ *  Used for finding patient identifiers at various organizations in an organizational directory, given
+ *  a universal "redox patient id" in a PatientSearch^LocationQuery request
+ *  Meta.DataModel: "PatientSearch"
+ *  Meta.EventType: "LocationQuery"
+ */
+@jsonDefaults case class LocationQuery(
+  Meta: Meta,
+  Patient: Option[LocationQueryPatient] = None,
+)
+object LocationQuery extends RobustPrimitives
+
+/**
+ * Response class for the above LocationQuery with matching patients + organizational IDs for each organization
+ * in the directory that knows about this patient
+ * Meta.DataModel: "PatientSearch"
+ * Meta.EventType: "LocationQueryResponse"
+ */
+@jsonDefaults case class LocationQueryResponse(
+  Meta: Meta,
+  Patients: Seq[LocationQueryPatient] = Seq.empty,
+)
+object LocationQueryResponse extends RobustPrimitives
 
 /**
  * Meta.DataModel: "PatientAdmin",
