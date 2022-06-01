@@ -11,7 +11,7 @@ import com.github.vitalsoftware.util.RobustPrimitives
  */
 @jsonDefaults case class DocumentGet(
   Meta: Meta,
-  Document: Option[Document] = None, // Only ID is needed for this query
+  Document: Option[Document] = None,
 )
 object DocumentGet extends RobustPrimitives
 
