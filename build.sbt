@@ -4,7 +4,14 @@ organization := "com.github.mdcollab"
 
 name := "scala-redox"
 
-scalaVersion := "2.12.10"
+scalaVersion := "2.12.15"
+
+// See: https://github.com/sbt/sbt-projectmatrix#building-against-multiple-scala-versions
+lazy val core = (projectMatrix in file("core"))
+  .settings(
+    name := "core"
+  )
+  .jvmPlatform(scalaVersions = Seq("2.13.8", "2.12.15"))
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
