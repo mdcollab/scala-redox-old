@@ -9,7 +9,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, dboreham/scala-2-13 ]
 
 jobs:
   build:
