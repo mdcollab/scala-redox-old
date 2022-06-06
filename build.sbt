@@ -16,8 +16,9 @@ resolvers ++= Seq(
 )
 
 val playJsonVersion = "2.8.0"
-val playLogbackVersion = "2.8.12"
-val playVersion = "2.8.9"
+val playLogbackVersion = "2.8.16"
+val playSpecVersion = "2.7.3"
+val playVersion = "2.8.16"
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % playJsonVersion,
@@ -29,7 +30,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % "10.1.15",
   "com.github.vital-software" %% "json-annotation" % "0.6.0",
   "com.github.nscala-time" %% "nscala-time" % "2.14.0",
-  "com.typesafe.play" %% "play-specs2" % playVersion % Test,
+  "com.typesafe.play" %% "play-specs2" % playSpecVersion % Test,
 )
 
 credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
