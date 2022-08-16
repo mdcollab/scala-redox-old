@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * Medication to be given.
@@ -42,7 +43,9 @@ object MedicationPlan extends RobustPrimitives
   Services: Seq[CodeWithStatus] = Seq.empty
 )
 
-object PlanOfCare extends RobustPrimitives
+object PlanOfCare extends RobustPrimitives{
+  implicit val format: OFormat[PlanOfCare] =Json.format
+}
 
 /**
  * This section contains future appointments, medications, orders, procedures, and services that a

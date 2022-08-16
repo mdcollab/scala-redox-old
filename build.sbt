@@ -4,7 +4,10 @@ organization := "com.github.mdcollab"
 
 name := "scala-redox"
 
-scalaVersion := "2.12.10"
+scalaVersion := "2.13.8"
+crossScalaVersions := Seq("2.13.8"
+//  , "2.12.10"
+)
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
@@ -26,17 +29,17 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-logback" % playLogbackVersion,
   "com.typesafe.play" %% "play-json-joda" % playJsonVersion,
   "com.typesafe.play" %% "play-ahc-ws" % playVersion,
-  "com.typesafe.play" %% "play-ws-standalone-json" % "1.1.2",
+  "com.typesafe.play" %% "play-ws-standalone-json" % "2.0.5",
   "com.typesafe.akka" %% "akka-http" % "10.1.15",
-  "com.github.vital-software" %% "json-annotation" % "0.6.0",
-  "com.github.nscala-time" %% "nscala-time" % "2.14.0",
+  "com.github.vital-software" %% "json-annotation" % "0.6.3",
+  "com.github.nscala-time" %% "nscala-time" % "2.22.0",
   "com.typesafe.play" %% "play-specs2" % playSpecVersion % Test,
 )
 
 credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 publishTo := { Some("Cloudsmith API" at "https://maven.cloudsmith.io/carbon-health/scala-redox/") }
 
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+//addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
 
 ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 

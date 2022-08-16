@@ -4,7 +4,7 @@ import com.github.vitalsoftware.macros.jsonDefaults
 import com.github.vitalsoftware.util.RobustPrimitives
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import org.joda.time.DateTime
-import play.api.libs.json.{ Format, Reads, Writes }
+import play.api.libs.json.{Format, Json, OFormat, Reads, Writes}
 
 /**
  * Lab who produced the chart result.
@@ -36,7 +36,9 @@ object ChartResultProducer extends RobustPrimitives
 ) extends Code
     with Status
 
-object ChartResult extends RobustPrimitives
+object ChartResult extends RobustPrimitives{
+  implicit val format: OFormat[ChartResult] =Json.format
+}
 
 /**
  * Person who produced the order result.

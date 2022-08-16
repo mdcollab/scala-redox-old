@@ -1,9 +1,10 @@
 package com.github.vitalsoftware.scalaredox.models
 
-import org.joda.time.{ DateTime, LocalDate }
+import org.joda.time.{DateTime, LocalDate}
 import com.github.vitalsoftware.util.JsonImplicits._
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * @param Sex Gender of the relative
@@ -63,7 +64,9 @@ object FamilyHistoryProblem extends RobustPrimitives
   Problems: Seq[FamilyHistoryProblem] = Seq.empty
 )
 
-object FamilyHistory extends RobustPrimitives
+object FamilyHistory extends RobustPrimitives{
+  implicit val format: OFormat[FamilyHistory] =Json.format
+}
 
 /**
  * This section contains entries for a patient's relatives and their health problems.

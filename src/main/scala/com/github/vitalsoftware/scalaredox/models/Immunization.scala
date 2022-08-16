@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * Immunization product (i.e. vaccine)
@@ -53,7 +54,9 @@ object Dose extends RobustPrimitives
   Dose: Option[Dose] = None
 ) extends DateStamped
 
-object Immunization extends RobustPrimitives
+object Immunization extends RobustPrimitives{
+  implicit val format: OFormat[Immunization] =Json.format
+}
 
 /**
  * This section lists the patient's current immunization status and pertinent immunization history.

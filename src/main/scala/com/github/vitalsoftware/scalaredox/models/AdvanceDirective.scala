@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * Advance directive documents that the healthcare organization has on file for the patient.
@@ -29,7 +30,10 @@ import com.github.vitalsoftware.util.RobustPrimitives
 ) extends Code
     with DateRange
 
-object AdvanceDirective extends RobustPrimitives
+object AdvanceDirective extends RobustPrimitives{
+  implicit val format: OFormat[AdvanceDirective] =Json.format
+}
+
 
 @jsonDefaults case class AdvanceDirectiveMessage(
   AdvanceDirectivesText: Option[String] = None,

@@ -5,7 +5,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
-import play.api.libs.json.{ Format, Reads, Writes }
+import play.api.libs.json.{Format, Json, OFormat, Reads, Writes}
 
 import scala.collection.Seq
 
@@ -63,4 +63,6 @@ object RedoxEventTypes extends Enumeration {
   Extensions: Option[Extension] = None,
 )
 
-object Meta extends RobustPrimitives
+object Meta extends RobustPrimitives{
+  implicit val format: OFormat[Meta] =Json.format
+}

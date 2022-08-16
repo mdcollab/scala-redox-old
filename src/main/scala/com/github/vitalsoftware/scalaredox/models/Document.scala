@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  *
@@ -38,4 +39,6 @@ object Document extends RobustPrimitives
   Patient: Patient
 ) extends HasPatient
 
-object Header extends RobustPrimitives
+object Header extends RobustPrimitives{
+  implicit val format: OFormat[Header] =Json.format
+}

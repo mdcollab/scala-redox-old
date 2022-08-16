@@ -5,6 +5,7 @@ import com.github.vitalsoftware.scalaredox.models.Provider
 import com.github.vitalsoftware.util.RobustPrimitives
 import play.api.libs.json.JodaWrites._
 import play.api.libs.json.JodaReads._
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * Information about the clinical summary's patient and where the summary came from
@@ -23,4 +24,6 @@ import play.api.libs.json.JodaReads._
   PCP: Option[Provider] = None,
 ) extends HasClinicalSummaryPatient
 
-object Header extends RobustPrimitives
+object Header extends RobustPrimitives{
+  implicit val format: OFormat[Header] =Json.format
+}

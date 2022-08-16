@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  *
@@ -26,7 +27,9 @@ import com.github.vitalsoftware.util.RobustPrimitives
   ReasonForVisit: Seq[BasicCode] = Seq.empty
 ) extends DateStamped
 
-object Encounter extends RobustPrimitives
+object Encounter extends RobustPrimitives{
+  implicit val format: OFormat[Encounter] =Json.format
+}
 
 /**
  * This section lists the patient's past encounters at the health system and associated diagnoses.

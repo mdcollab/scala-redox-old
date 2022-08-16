@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * Piece of medical equipment.
@@ -20,7 +21,9 @@ import com.github.vitalsoftware.util.RobustPrimitives
   Product: BasicCode = BasicCode()
 )
 
-object MedicalEquipment extends RobustPrimitives
+object MedicalEquipment extends RobustPrimitives{
+  implicit val format: OFormat[MedicalEquipment] =Json.format
+}
 
 /**
  * This section lists any medical equipment that the patient uses or has been prescribed.

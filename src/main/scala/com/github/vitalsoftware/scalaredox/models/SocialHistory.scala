@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * @param Code A code for the observation (exercise, alcohol intake, etc.) . SNOMED CT
@@ -59,7 +60,9 @@ object TobaccoUse extends RobustPrimitives
   TobaccoUse: Seq[TobaccoUse] = Seq.empty
 )
 
-object SocialHistory extends RobustPrimitives
+object SocialHistory extends RobustPrimitives{
+  implicit val format: OFormat[SocialHistory] =Json.format
+}
 
 /**
  * This section contains information such as tobacco use, pregnancies, and generic social behavior observations.

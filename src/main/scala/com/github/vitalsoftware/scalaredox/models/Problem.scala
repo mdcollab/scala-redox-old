@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  *
@@ -27,7 +28,9 @@ import com.github.vitalsoftware.util.RobustPrimitives
   Comment: Option[String] = None,
 ) extends Code
 
-object Problem extends RobustPrimitives
+object Problem extends RobustPrimitives{
+  implicit val format: OFormat[Problem] =Json.format
+}
 
 /**
  * This section contains the patient's past and current relevant medical problems.

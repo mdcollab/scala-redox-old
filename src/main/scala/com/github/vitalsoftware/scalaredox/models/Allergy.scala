@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  *
@@ -27,7 +28,9 @@ import com.github.vitalsoftware.util.RobustPrimitives
   Comment: Option[String] = None
 )
 
-object Allergy extends RobustPrimitives
+object Allergy extends RobustPrimitives{
+  implicit val format: OFormat[Allergy] =Json.format
+}
 
 /**
  * describes any medication allergies, food allergies, or reactions to other substances

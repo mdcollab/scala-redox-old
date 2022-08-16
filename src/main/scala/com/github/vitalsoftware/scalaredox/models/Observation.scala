@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 sealed trait Observation extends DateStamped with Status {
   def Code: Option[String]
@@ -35,7 +36,9 @@ sealed trait ObservationValue { self: Observation =>
   TargetSite: Option[BasicCode] = None,
 ) extends ClinicalSummaryObservation
 
-object ProcedureObservation extends RobustPrimitives
+object ProcedureObservation extends RobustPrimitives{
+  implicit val format: OFormat[ProcedureObservation] =Json.format
+}
 
 /**
  * Result observation
@@ -81,7 +84,9 @@ object ResultObservation extends RobustPrimitives
     with ObservationInterpretation
     with ObservationValue
 
-object VitalSignObservation extends RobustPrimitives
+object VitalSignObservation extends RobustPrimitives{
+  implicit val format: OFormat[VitalSignObservation] =Json.format
+}
 
 /**
  * Flowsheet observation
@@ -105,4 +110,6 @@ object VitalSignObservation extends RobustPrimitives
     with Codeset
     with ObservationValue
 
-object FlowsheetObservation extends RobustPrimitives
+object FlowsheetObservation extends RobustPrimitives{
+  implicit val format: OFormat[FlowsheetObservation] =Json.format
+}

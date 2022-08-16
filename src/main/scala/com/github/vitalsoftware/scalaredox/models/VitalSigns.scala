@@ -4,7 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
-import play.api.libs.json.{ Format, Reads, Writes }
+import play.api.libs.json.{Format, Json, OFormat, Reads, Writes}
 
 /**
  * @param DateTime The date and time of the reading. ISO 8601 Format
@@ -16,7 +16,9 @@ import play.api.libs.json.{ Format, Reads, Writes }
   Observations: Seq[VitalSignObservation] = Seq.empty
 )
 
-object VitalSigns extends RobustPrimitives
+object VitalSigns extends RobustPrimitives{
+  implicit val format: OFormat[VitalSigns] =Json.format
+}
 
 object CommonVitalTypes extends Enumeration {
   val Height, Weight, Oximetry, Temperature, RespirationRate, Pulse, BPSystolic, BPDiastolic = Value
@@ -36,4 +38,6 @@ object CommonVitalTypes extends Enumeration {
   VitalSigns: Seq[VitalSigns] = Seq.empty
 )
 
-object VitalSignsMessage extends RobustPrimitives
+object VitalSignsMessage extends RobustPrimitives{
+  implicit val format: OFormat[VitalSignsMessage] =Json.format
+}

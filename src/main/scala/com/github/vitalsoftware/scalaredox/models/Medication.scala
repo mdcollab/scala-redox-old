@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 trait Medication extends DateRange {
   /** Dose The size of the dose for pills, capsules, etc. */
@@ -62,7 +63,9 @@ object TimePeriod extends RobustPrimitives
   Extensions: Option[MedicationExtension] = None,
 ) extends Medication
 
-object MedicationTaken extends RobustPrimitives
+object MedicationTaken extends RobustPrimitives{
+  implicit val format: OFormat[MedicationTaken] =Json.format
+}
 
 /**
   *
@@ -78,7 +81,9 @@ object MedicationTaken extends RobustPrimitives
   ReasonNotGiven: Option[String],
 ) extends Medication
 
-object MedicationGiven extends RobustPrimitives
+object MedicationGiven extends RobustPrimitives{
+  implicit val format: OFormat[MedicationGiven] =Json.format
+}
 
 /**
  *

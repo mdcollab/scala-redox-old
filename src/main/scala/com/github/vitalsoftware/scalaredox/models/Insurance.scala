@@ -4,7 +4,7 @@ import org.joda.time.LocalDate
 import com.github.vitalsoftware.util.JsonImplicits.jodaLocalDateFormat
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
-import play.api.libs.json.{ Format, Reads, Writes }
+import play.api.libs.json.{Format, Json, OFormat, Reads, Writes}
 
 /**
  *
@@ -129,4 +129,6 @@ object Guarantor extends RobustPrimitives
   Insured: Option[InsuredPerson] = None
 )
 
-object Insurance extends RobustPrimitives
+object Insurance extends RobustPrimitives{
+  implicit val format: OFormat[Insurance] =Json.format
+}

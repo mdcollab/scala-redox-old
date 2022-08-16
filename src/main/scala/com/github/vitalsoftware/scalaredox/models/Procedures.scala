@@ -2,6 +2,7 @@ package com.github.vitalsoftware.scalaredox.models
 
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import play.api.libs.json.{Json, OFormat}
 
 /**
  * @param Observations These are procedures that are more observational in nature, such as an EEG or EKG.
@@ -14,7 +15,9 @@ import com.github.vitalsoftware.util.RobustPrimitives
   Services: Seq[CodeWithStatus] = Seq.empty
 )
 
-object Procedures extends RobustPrimitives
+object Procedures extends RobustPrimitives{
+  implicit val format: OFormat[Procedures] =Json.format
+}
 
 /**
  * This section documents three types of things: diagnostic procedures, procedures that change the body, and services performed by clinical staff.
