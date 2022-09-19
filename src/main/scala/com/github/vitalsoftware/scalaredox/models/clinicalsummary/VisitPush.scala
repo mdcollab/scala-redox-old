@@ -3,6 +3,7 @@ package com.github.vitalsoftware.scalaredox.models.clinicalsummary
 import ai.x.play.json.Encoders.encoder
 import ai.x.play.json.Jsonx
 import com.github.vitalsoftware.scalaredox.models.{AdvanceDirective, Allergy, ChartResult, Encounter, FamilyHistory, Immunization, Insurance, MedicalEquipment, MedicationGiven, MedicationTaken, Meta, PlanOfCare, Problem, Procedures, SocialHistory, VitalSigns}
+import play.api.libs.json.OFormat
 
 import scala.collection.Seq
 
@@ -28,13 +29,15 @@ import scala.collection.Seq
  *                   -Observations - procedures which result in new information about a patient.
  *                   -Procedures - procedures whose immediate and primary outcome is the alteration of the physical condition of the patient.
  *                   -Services (Sometimes called Acts) - procedures which cannot be classified as an observation or a procedure, such as a dressing change, feeding, or teaching.
- * @param ReasonForReferralText
- * @param ReasonForVisitText
+ * @param ReasonForReferralText Free text recording the reason the patient is being referred for a consultation by a provider.
+ * @param ReasonForVisitText Free text describing the patient's reason for the patient's visit.
  * @param Results Array of test results for the patient. This can include laboratory results, imaging results, and procedure Results[].
  * @param ReviewOfSystemsText Free text about symptoms and wellbeing of the patient (plain text only, no markup)
  * @param SocialHistory Generic observations about the patient's social history
  * @param SubjectiveText Free text description of the patient's condition as reported by the patient + documented by clinician (plain text only, no markup)
  * @param VitalSigns An array of groups of vital signs. Each element represents one time period in which vitals were recorded.
+ * @param ChiefComplaintText Free text chief complaint with any documented exposition.
+ * @param AssessmentText Free text of the clinician's conclusions and working assumptions that will guide treatment of the patient.
  */
 case class VisitPush(
   Meta: Meta,
@@ -60,9 +63,11 @@ case class VisitPush(
   ReviewOfSystemsText: Option[String] = None,
   SocialHistory: Option[SocialHistory] = None,
   SubjectiveText: Option[String] = None,
-  VitalSigns: Seq[VitalSigns] = Seq.empty
+  VitalSigns: Seq[VitalSigns] = Seq.empty,
+  ChiefComplaintText: Option[String] = None,
+  AssessmentText: Option[String] = None,
 ) extends ClinicalSummaryLike
 
 object VisitPush {
-  implicit val format = Jsonx.formatCaseClassUseDefaults[VisitPush]
+  implicit val format: OFormat[VisitPush] = Jsonx.formatCaseClassUseDefaults[VisitPush]
 }
