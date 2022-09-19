@@ -38,6 +38,9 @@ import scala.collection.Seq
  * @param VitalSigns An array of groups of vital signs. Each element represents one time period in which vitals were recorded.
  * @param ChiefComplaintText Free text chief complaint with any documented exposition.
  * @param AssessmentText Free text of the clinician's conclusions and working assumptions that will guide treatment of the patient.
+ * @param PhysicalExamText Free text regarding the physical exam, observations by clinician.
+ * @param PlanOfCareText Free text form of the plan of care summary.
+ * @param MedicalHistoryText Free text that may include narrative of general medical history.
  */
 case class VisitPush(
   Meta: Meta,
@@ -66,6 +69,9 @@ case class VisitPush(
   VitalSigns: Seq[VitalSigns] = Seq.empty,
   ChiefComplaintText: Option[String] = None,
   AssessmentText: Option[String] = None,
+  PhysicalExamText: Option[String] = None,
+  PlanOfCareText: Option[String] =  None,
+  MedicalHistoryText: Option[String] =  None,
 ) extends ClinicalSummaryLike
 
 object VisitPush {
