@@ -56,6 +56,7 @@ object ProcedureObservation extends RobustPrimitives
   ValueType: Option[ValueTypes.Value] = None,
   Units: Option[String] = None,
   ReferenceRange: Option[ReferenceRange] = None,
+  Comments: Seq[Comment] = Seq.empty
 ) extends ClinicalSummaryObservation
     with ObservationInterpretation
     with ObservationValue

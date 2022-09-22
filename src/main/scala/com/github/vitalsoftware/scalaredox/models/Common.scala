@@ -135,6 +135,12 @@ object PhoneNumber extends RobustPrimitives
 
 object ReferenceRange extends RobustPrimitives
 
+@jsonDefaults case class Comment(
+  Text: Option[String] = None,
+)
+
+object Comment extends RobustPrimitives
+
 object ValueTypes extends Enumeration {
   val Numeric, String, Date, Time, DateTime, PhysicalQuantity, Number, Interval, Ratio, Code = Value
   val CodedEntry = Value("Coded Entry")
