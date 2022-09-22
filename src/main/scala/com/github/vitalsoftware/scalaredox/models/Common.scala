@@ -1,11 +1,12 @@
 package com.github.vitalsoftware.scalaredox.models
 
+import java.util.{ Locale, UUID }
+import org.joda.time.DateTime
+import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
-import org.joda.time.DateTime
 import play.api.libs.json._
 
-import java.util.{Locale, UUID}
 import scala.util.Try
 
 /**
