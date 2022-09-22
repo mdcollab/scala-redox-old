@@ -1,12 +1,11 @@
 package com.github.vitalsoftware.scalaredox.models
 
-import java.util.{ Locale, UUID }
-import org.joda.time.DateTime
-import com.github.vitalsoftware.util.JsonImplicits.jodaISO8601Format
 import com.github.vitalsoftware.macros._
 import com.github.vitalsoftware.util.RobustPrimitives
+import org.joda.time.DateTime
 import play.api.libs.json._
 
+import java.util.{Locale, UUID}
 import scala.util.Try
 
 /**
@@ -134,6 +133,12 @@ object PhoneNumber extends RobustPrimitives
 )
 
 object ReferenceRange extends RobustPrimitives
+
+@jsonDefaults case class Comment(
+  Text: Option[String] = None,
+)
+
+object Comment extends RobustPrimitives
 
 object ValueTypes extends Enumeration {
   val Numeric, String, Date, Time, DateTime, PhysicalQuantity, Number, Interval, Ratio, Code = Value
