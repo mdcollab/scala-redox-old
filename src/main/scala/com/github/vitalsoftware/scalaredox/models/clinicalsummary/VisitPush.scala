@@ -44,7 +44,7 @@ import scala.collection.Seq
  */
 case class VisitPush(
   Meta: Meta,
-  Header: Header,
+  Header: VisitPushHeader,
   AdvanceDirectives: Seq[AdvanceDirective] = Seq.empty,
   Allergies: Seq[Allergy] = Seq.empty,
   Encounters: Seq[Encounter] = Seq.empty,
