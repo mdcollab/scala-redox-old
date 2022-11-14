@@ -7,3 +7,7 @@ trait HasVisit {
 trait HasVisitInfo extends HasVisit {
   def Visit: Option[VisitInfo]
 }
+
+trait HasVisitPushVisitInfo extends HasVisit {
+  def Visit: Option[VisitPushVisitInfo]
+}

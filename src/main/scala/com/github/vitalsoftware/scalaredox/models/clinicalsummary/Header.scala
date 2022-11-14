@@ -24,3 +24,22 @@ import play.api.libs.json.JodaReads._
 ) extends HasClinicalSummaryPatient
 
 object Header extends RobustPrimitives
+
+/**
+ * Information about the clinical summary's patient and where the summary came from
+ *
+ * @param DirectAddressFrom The sender's Direct address, if one or both sides are using Direct messaging.
+ * @param DirectAddressTo The recipient's Direct address, if one or both sides are using Direct messaging.
+ * @param Document An object containing metadata about the document being pushed to the destination.
+ * @param Patient Patient
+ * @param PCP Provider
+ */
+@jsonDefaults case class VisitPushHeader(
+  DirectAddressFrom: Option[String] = None,
+  DirectAddressTo: Option[String] = None,
+  Document: VisitPushDocument,
+  Patient: Patient,
+  PCP: Option[Provider] = None,
+) extends HasClinicalSummaryPatient
+
+object VisitPushHeader extends RobustPrimitives

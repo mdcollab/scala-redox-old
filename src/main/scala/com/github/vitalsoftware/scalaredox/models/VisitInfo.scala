@@ -128,3 +128,25 @@ object VisitInfo extends RobustPrimitives
 ) extends VisitLike
 
 object BasicVisitInfo extends RobustPrimitives
+
+// Note: Presently used only by VisitPush
+/**
+ * @param StartDateTime        The start date/time of the visit. ISO 8601 Format
+ * @param EndDateTime          The end date/time of the visit. ISO 8601 Format
+ * @param Reason               The reason for visit. The Reason for Visit is rarely found in the header. Instead, look to the ReasonForVisitText and related fields.
+ * @param VisitNumber          ID for the patient visit/encounter.
+ * @param Type                 Type of the visit (office visit, hospital etc.)
+ * @param Location             The location of the visit.
+ * @param DischargeDisposition Discharge disposition pf the visit.
+ */
+@jsonDefaults case class VisitPushVisitInfo(
+  StartDateTime: Option[DateTime] = None,
+  EndDateTime: Option[String] = None,
+  Reason: Option[String] = None,
+  VisitNumber: Option[String] = None,
+  Type: BasicCode = BasicCode(),
+  Location: Option[CareLocation] = None, //*
+  DischargeDisposition: BasicCode = BasicCode(),
+) extends VisitLike
+
+object VisitPushVisitInfo extends RobustPrimitives
