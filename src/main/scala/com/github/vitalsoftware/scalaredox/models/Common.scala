@@ -178,3 +178,11 @@ object Language {
 
   implicit val jsonFormats: Format[Language] = Format(jsonReads, jsonWrites)
 }
+
+@jsonDefaults case class Telecom(
+  Value: Option[String] = None,
+  Use: Option[String] = None,
+  System: Option[String] = None,
+)
+
+object Telecom extends RobustPrimitives
