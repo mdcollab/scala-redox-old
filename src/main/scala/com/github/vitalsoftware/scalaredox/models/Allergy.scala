@@ -17,6 +17,7 @@ import com.github.vitalsoftware.util.RobustPrimitives
  * @param Comment Free text comment about the allergy.
  */
 @jsonDefaults case class Allergy(
+  AllergyText: Option[String] = None,
   Type: BasicCode = BasicCode(),
   Substance: BasicCode = BasicCode(),
   Reaction: Seq[CodeWithText] = Seq.empty,
