@@ -41,8 +41,6 @@ object RedoxEventTypes extends Enumeration {
  * @param Test Flag as a test message
  * @param Source Where the message originated. Included in messages from Redox
  * @param Destinations List of destinations to send your message to. All messages must have at least one destination. Queries accept only one destination. Required when sending data to Redox
- * @param Message Record in Redox that corresponds to the communication sent from the source to Redox. Included in messages from Redox
- * @param Transmission Record in Redox that corresponds to the communication sent from Redox to your destination. Included in messages from Redox
  * @param FacilityCode Code for the facility related to the message. Only use this field if a health system indicates you should. The code is specific to the health system's EHR and might not be unique across health systems. In general, the facility fields within the data models (e.g. OrderingFacility) are more reliable and informative.
  * @param IsIncomplete Indicates that a limit was reached, and not all data was returned. If true, the sender may want to restrict the parameters of the request in order to match fewer results.
  * @param CanceledEvent Type of event being canceled. E.g. Arrival, Discharge, PreAdmit
@@ -55,8 +53,6 @@ object RedoxEventTypes extends Enumeration {
   Source: Option[SourceDestination] = None,
   Destinations: Seq[SourceDestination] = Seq.empty,
   Logs: Seq[Log] = Seq.empty,
-  Message: Option[NumericIdentifier] = None,
-  Transmission: Option[NumericIdentifier] = None,
   FacilityCode: Option[String] = None,
   IsIncomplete: Option[Boolean] = None,
   CanceledEvent: Option[RedoxEventTypes.Value] = None,
