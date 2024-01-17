@@ -36,9 +36,7 @@ libraryDependencies ++= Seq(
 credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 publishTo := { Some("Cloudsmith API" at "https://maven.cloudsmith.io/carbon-health/scala-redox/") }
 
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
-
-ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
+ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation", "-Ymacro-annotations")
 
 publishMavenStyle := true
 
