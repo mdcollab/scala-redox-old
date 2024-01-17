@@ -19,7 +19,7 @@ import play.api.libs.json.JodaReads._
   DirectAddressFrom: Option[String] = None,
   DirectAddressTo: Option[String] = None,
   Document: Document,
-  Patient: com.github.vitalsoftware.scalaredox.models.Patient,
+  Patient: Patient,
   PCP: Option[Provider] = None,
 ) extends HasClinicalSummaryPatient
 
@@ -38,7 +38,7 @@ object Header extends RobustPrimitives
   DirectAddressFrom: Option[String] = None,
   DirectAddressTo: Option[String] = None,
   Document: VisitPushDocument,
-  Patient: com.github.vitalsoftware.scalaredox.models.Patient,
+  Patient: Patient,
   PCP: Option[Provider] = None,
 ) extends HasClinicalSummaryPatient
 
