@@ -26,7 +26,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-logback" % playLogbackVersion,
   "com.typesafe.play" %% "play-json-joda" % playJsonVersion,
   "com.typesafe.play" %% "play-ahc-ws" % playVersion,
-  "com.typesafe.play" %% "play-ws-standalone-json" % "2.1.10",
+  "com.typesafe.play" %% "play-ws-standalone-json" % "2.0.5",
   "com.typesafe.akka" %% "akka-http" % "10.2.10",
   "com.github.vital-software" %% "json-annotation" % "0.6.3",
   "com.github.nscala-time" %% "nscala-time" % "2.32.0",
