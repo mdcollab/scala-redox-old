@@ -114,7 +114,7 @@ trait JsonImplicits {
 
     private def reduceEmptySubtreesImpl(jv: JsValue): JsValue =
       jv match {
-        case JsObject(o) => if (isEmpty(jv)) JsNull else JsObject(o.mapValues(reduceEmptySubtreesImpl).toSeq)
+        case JsObject(o) => if (isEmpty(jv)) JsNull else JsObject(o.mapValues(reduceEmptySubtreesImpl).toMap)
         case JsArray(a)  => if (isEmpty(jv)) JsArray.empty else JsArray(a.map(reduceEmptySubtreesImpl))
         case _           => jv
       }
