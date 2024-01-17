@@ -14,7 +14,7 @@ import play.api.libs.json.JodaReads._
  */
 @jsonDefaults case class PatientQuery(
   Meta: Meta,
-  Patient: Patient,
+  Patient: com.github.vitalsoftware.scalaredox.models.Patient,
   Location: Option[Department] = None,
 ) extends ClinicalSummaryLike
     with HasClinicalSummaryPatient
