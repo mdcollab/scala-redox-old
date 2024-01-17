@@ -15,10 +15,10 @@ resolvers ++= Seq(
   "Atlassian Releases" at "https://maven.atlassian.com/public/",
 )
 
-val playJsonVersion = "2.8.0"
-val playLogbackVersion = "2.8.16"
-val playSpecVersion = "2.7.3"
-val playVersion = "2.8.16"
+val playJsonVersion = "2.9.4"
+val playLogbackVersion = "2.8.18"
+val playSpecVersion = "2.8.18"
+val playVersion = "2.8.18"
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % playJsonVersion,
@@ -26,10 +26,10 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-logback" % playLogbackVersion,
   "com.typesafe.play" %% "play-json-joda" % playJsonVersion,
   "com.typesafe.play" %% "play-ahc-ws" % playVersion,
-  "com.typesafe.play" %% "play-ws-standalone-json" % "1.1.14",
-  "com.typesafe.akka" %% "akka-http" % "10.1.15",
-  "com.github.vital-software" %% "json-annotation" % "0.6.0",
-  "com.github.nscala-time" %% "nscala-time" % "2.14.0",
+  "com.typesafe.play" %% "play-ws-standalone-json" % "2.1.10",
+  "com.typesafe.akka" %% "akka-http" % "10.5.0",
+  "com.github.vital-software" %% "json-annotation" % "0.6.3",
+  "com.github.nscala-time" %% "nscala-time" % "2.32.0",
   "com.typesafe.play" %% "play-specs2" % playSpecVersion % Test,
 )
 
