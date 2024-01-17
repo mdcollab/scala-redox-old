@@ -15,10 +15,10 @@ resolvers ++= Seq(
   "Atlassian Releases" at "https://maven.atlassian.com/public/",
 )
 
-val playJsonVersion = "2.9.0"
+val playJsonVersion = "2.8.0"
 val playLogbackVersion = "2.8.16"
 val playSpecVersion = "2.7.3"
-val playVersion = "2.9.0"
+val playVersion = "2.8.16"
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % playJsonVersion,
