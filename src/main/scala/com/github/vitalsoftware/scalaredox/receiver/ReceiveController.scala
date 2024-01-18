@@ -7,6 +7,7 @@ import play.api.mvc._
 import play.api.Logger
 import play.api.libs.json.JsonConfiguration.Aux
 
+import scala.collection.Seq
 import scala.concurrent.Future
 
 trait ReceiveController extends BaseController {
