@@ -7,6 +7,7 @@ import play.api.mvc._
 import play.api.Logger
 import play.api.libs.json.JsonConfiguration.Aux
 
+import scala.collection.Seq
 import scala.concurrent.Future
 
 trait ReceiveController extends BaseController {
@@ -47,7 +48,7 @@ trait ReceiveController extends BaseController {
     request.underlying.body
       .validate[Challenge]
       .fold(
-        (errors: scala.collection.Seq[(JsPath, scala.collection.Seq[JsonValidationError])]) => {
+        (errors: Seq[(JsPath, Seq[JsonValidationError])]) => {
           // The challenge has an invalid format
           logger.error(s"Redox webhook challenge had errors (${JsError.toJson(errors)}) from $request")
           logger.debug(s"Failed challenge body was: ${request.underlying.body.toString()}")
