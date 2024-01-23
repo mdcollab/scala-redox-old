@@ -21,7 +21,6 @@ import com.github.vitalsoftware.scalaredox.models.{
 import com.github.vitalsoftware.util.RobustPrimitives
 import play.api.libs.json.JodaWrites._
 import play.api.libs.json.JodaReads._
-import scala.collection.Seq
 
 /**
  * @param Meta Request/response clinical summary header meta-data
