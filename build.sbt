@@ -22,7 +22,7 @@ val playVersion = "2.8.16"
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % playJsonVersion,
-  "ai.x" %% "play-json-extensions" % "0.42.0",
+  "com.carbonhealth.ai.x" %% "play-json-extensions" % "1.0.0",
   "com.typesafe.play" %% "play-logback" % playLogbackVersion,
   "com.typesafe.play" %% "play-json-joda" % playJsonVersion,
   "com.typesafe.play" %% "play-ahc-ws" % playVersion,

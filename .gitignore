@@ -13,6 +13,7 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+.ivy2
 
 # Scala-IDE specific
 .scala_dependencies
